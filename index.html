@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Meme Generator</title>
+  </head>
+  <body onload="onInit()">
+    <h1>Meme Generator</h1>
+    <section class="gallery"></section>
+    <section class="editor">
+            <input type="color" value="#000000" oninput="onSetColor(this.value)" />
+            <input type="text" id="text" name="text" placeholder="Type here" oninput="onSetText(this.value)">
+            <select onchange="onSetSize(this.value)">
+                <option>12</option>
+                <option>16</option>
+                <option selected>20</option>
+                <option>32</option>
+                <option>48</option>
+            </select>
+        <div class="canvas-container">
+            <canvas
+              width="400"
+              height="400"
+              onmousedown="onDown(event)"
+              ontouchstart="onDown(event)"
+              onmouseup="onUp()"
+              ontouchend="onUp()"
+              onmousemove="onDraw(event)"
+              ontouchmove="onDraw(event)"
+            ></canvas>
+            <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
+            <button onclick="onClearCanvas()">Clear</button>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
