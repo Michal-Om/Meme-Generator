@@ -1,0 +1,10 @@
+.main-nav-list {
+  gap: 2rem;
+}
+
+.main-nav-list a {
+  display: grid;
+  place-items: center;
+  height: 4rem;
+  width: 4rem;
+}

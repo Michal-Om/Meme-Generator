@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+canvas {
+  border: 1px solid black;
+  margin-top: 1.5em;
+}
+
+.gallery img {
+  cursor: pointer;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}

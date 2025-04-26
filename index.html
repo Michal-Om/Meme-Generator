@@ -3,13 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Meme Generator</title>
   </head>
   <body onload="onInit()">
-    <h1>Meme Generator</h1>
-    <section class="gallery"></section>
-    <section class="editor">
+    
+    <header class="main-header flex space-between align-center">
+        <div class="logo">LOGO</div>
+        <nav class="main-nav">
+          <ul class="main-nav-list clean-list flex">
+            <li><a href="#" class="active" onclick="showGallery()">Gallery</a></li>
+            <li><a href="#" onclick="showEditor()">Memes</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </nav>
+    </header>
+    
+    <section class="gallery page active">
+      <h2>Select an image</h2>
+      <div class="img-grid"></div> 
+    </section>
+
+    <section class="editor page">
+      <h1>Meme Generator</h1>
             <input type="color" value="#000000" oninput="onSetColor(this.value)" />
             <input type="text" id="text" name="text" placeholder="Type here" oninput="onSetText(this.value)">
             <select onchange="onSetSize(this.value)">
@@ -23,17 +39,14 @@
             <canvas
               width="400"
               height="400"
-              onmousedown="onDown(event)"
-              ontouchstart="onDown(event)"
-              onmouseup="onUp()"
-              ontouchend="onUp()"
-              onmousemove="onDraw(event)"
-              ontouchmove="onDraw(event)"
+
             ></canvas>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
             <button onclick="onClearCanvas()">Clear</button>
     </section>
-
-    <script src="js/main.js"></script>
+ 
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
   </body>
 </html>
