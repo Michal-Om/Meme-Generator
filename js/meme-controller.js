@@ -133,10 +133,27 @@ function renderNewLine(idx) {
     console.log('rendering new line input with idx:', idx)
     const elNewLine = document.querySelector('.text-lines-container')
     elNewLine.innerHTML += `
-<input type="search" class="extra-text-line" name="text" placeholder="Line ${idx + 1}" onfocus="onFocusLine(${idx})" oninput="onSetText(this.value, ${idx})">
+<input 
+type="search" 
+class="text-line" 
+name="text" 
+placeholder="Line ${idx + 1}" 
+onclick="onSelectLine(this, ${idx})" 
+onfocus="onFocusLine(${idx})" 
+oninput="onSetText(this.value, ${idx})">
 `
 }
 
 function onFocusLine(idx) {
     gMeme.selectedLineIdx = idx
 }
+
+function onSelectLine(elLine, idx) {
+    console.log('onSelectLine called with idx:', idx)
+
+    gMeme.selectedLineIdx = idx  //model
+    const elInputs = document.querySelectorAll('.text-line')
+    elInputs.forEach(input => input.classList.remove('selected'))
+    elLine.classList.add('selected')
+}
+

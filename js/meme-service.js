@@ -42,10 +42,6 @@ function getSelectedLine() { //used for actions on a specific line, like editing
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-// function getLineIdx(line) {
-//     return gMeme.lines.findIndex(currLine => currLine === line)
-
-// }
 
 function getImgById(imgId) {
     const img = gImgs.find(img => +imgId === img.id)
@@ -74,9 +70,10 @@ function createLine() {
         pos: { x: 150, y: 50 + (lineIdx * 40) },
     }
     gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = lineIdx
     console.log('gMeme lines:', gMeme.lines)
     console.log('new line idx:', lineIdx);
 
-    renderNewLine(lineIdx) //1
+    renderNewLine(lineIdx)
 }
 

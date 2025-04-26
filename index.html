@@ -27,8 +27,7 @@
     <section class="editor page">
       <h1>Meme Generator</h1>
       <div class="text-lines-container">
-         <input type="search" id="text" name="text" placeholder="Top text" onfocus="onFocusLine(0)" oninput="onSetText(this.value, 0)">
-            <!-- <input type="text" id="text" name="text" placeholder="Bottom text" oninput="onSetText(this.value)"> -->
+         <input type="search" id="text" class="text-line" name="text" placeholder="Top text" onclick="onSelectLine(this, 0)" onfocus="onFocusLine(0)" oninput="onSetText(this.value, 0)">
       </div>
       <div class="editor-btns">
          <input type="color" value="#000000" oninput="onSetColor(this.value)" />

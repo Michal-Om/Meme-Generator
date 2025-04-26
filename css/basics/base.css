@@ -18,3 +18,7 @@ canvas {
 .page.active {
   display: block;
 }
+
+.selected {
+  border: 2px solid rgb(0, 225, 255);
+}
