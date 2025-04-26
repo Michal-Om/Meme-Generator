@@ -26,25 +26,24 @@
 
     <section class="editor page">
       <h1>Meme Generator</h1>
-            <input type="color" value="#000000" oninput="onSetColor(this.value)" />
-            <input type="text" id="text" name="text" placeholder="Type here" oninput="onSetText(this.value)">
-            <!-- <select onchange="onSetSize(this.value)">
-                <option>12</option>
-                <option>16</option>
-                <option selected>20</option>
-                <option>32</option>
-                <option>48</option>
-            </select> -->
-            <button class="font-inc" onclick="onFontSizeUp(10)">A+</button>
-            <button class="font-dec" onclick="onFontSizeDown(10)">A-</button>
+      <div class="text-lines-container">
+         <input type="search" id="text" name="text" placeholder="Top text" onfocus="onFocusLine(0)" oninput="onSetText(this.value, 0)">
+            <!-- <input type="text" id="text" name="text" placeholder="Bottom text" oninput="onSetText(this.value)"> -->
+      </div>
+      <div class="editor-btns">
+         <input type="color" value="#000000" oninput="onSetColor(this.value)" />
+          <button class="add-text btn" onclick="onAddLine()">Add Text Line</button>
+            <button class="font-inc btn" onclick="onFontSizeUp(10)">A+</button>
+            <button class="font-dec btn" onclick="onFontSizeDown(10)">A-</button>
+      </div>
+                 
         <div class="canvas-container">
             <canvas
               width="400"
               height="400"
-
             ></canvas>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
-            <button onclick="onClearCanvas()">Clear</button>
+            <button class="clear btn" onclick="onClearCanvas()">Clear</button>
     </section>
  
     <script src="js/meme-controller.js"></script>

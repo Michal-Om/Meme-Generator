@@ -11,43 +11,48 @@ function onInit() {
 }
 
 
-function onSetText(text) {
-    setLineText(text)
+function onSetText(text, idx) {
+    console.log('onSetText:', text, 'at idx:', idx)
+    setLineText(text, idx)
     renderMeme()
 }
 
 
 function renderMeme() {
-    const line = getSelectedLine()
+    // const line = getSelectedLine() // renders only one line
+    console.log('Rendering Meme...');
+
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
     if (gMeme.img) {
         gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
-    if (line.txt) {
-        renderText(line)
-    }
+    gMeme.lines.forEach(line => { //render all existing text lines 
+        if (line.txt) {
+            renderText(line)
+        }
+    })
+
 }
 
+
 function renderText(line) {
+    console.log('curr line at render text:', line)
+
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+    console.log('Rendering text:', line.txt, 'at position:', line.pos)
 }
 
 //Text Color
 function onSetColor(color) {
     const line = getSelectedLine()
     line.color = color
+    renderMeme()
 }
-
-//Text-size
-// function onSetSize(size) {
-//     const line = getSelectedLine()
-//     line.size = +size
-// }
 
 // function getEvPos(ev) {
 //     const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -107,9 +112,9 @@ function onFontSizeUp(size) {
     if (line.size >= 100) return
     line.size += size
     console.log('current font size:', line.size);
-
     renderMeme()
 }
+
 function onFontSizeDown(size) {
     const line = getSelectedLine()
     if (line.size <= 10) return
@@ -117,4 +122,21 @@ function onFontSizeDown(size) {
     line.size -= size
     console.log('current font size:', line.size);
     renderMeme()
+}
+
+//Add Text lines
+function onAddLine() {
+    createLine() //model
+}
+
+function renderNewLine(idx) {
+    console.log('rendering new line input with idx:', idx)
+    const elNewLine = document.querySelector('.text-lines-container')
+    elNewLine.innerHTML += `
+<input type="search" class="extra-text-line" name="text" placeholder="Line ${idx + 1}" onfocus="onFocusLine(${idx})" oninput="onSetText(this.value, ${idx})">
+`
+}
+
+function onFocusLine(idx) {
+    gMeme.selectedLineIdx = idx
 }
