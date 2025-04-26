@@ -28,13 +28,15 @@
       <h1>Meme Generator</h1>
             <input type="color" value="#000000" oninput="onSetColor(this.value)" />
             <input type="text" id="text" name="text" placeholder="Type here" oninput="onSetText(this.value)">
-            <select onchange="onSetSize(this.value)">
+            <!-- <select onchange="onSetSize(this.value)">
                 <option>12</option>
                 <option>16</option>
                 <option selected>20</option>
                 <option>32</option>
                 <option>48</option>
-            </select>
+            </select> -->
+            <button class="font-inc" onclick="onFontSizeUp(10)">A+</button>
+            <button class="font-dec" onclick="onFontSizeDown(10)">A-</button>
         <div class="canvas-container">
             <canvas
               width="400"

@@ -44,10 +44,10 @@ function onSetColor(color) {
 }
 
 //Text-size
-function onSetSize(size) {
-    const line = getSelectedLine()
-    line.size = +size
-}
+// function onSetSize(size) {
+//     const line = getSelectedLine()
+//     line.size = +size
+// }
 
 // function getEvPos(ev) {
 //     const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -99,4 +99,22 @@ function showGallery() {
     document.querySelector('.gallery').classList.add('active')
     document.querySelector('.editor').classList.remove('active')
 
+}
+
+//Font Size changes
+function onFontSizeUp(size) {
+    const line = getSelectedLine()
+    if (line.size >= 100) return
+    line.size += size
+    console.log('current font size:', line.size);
+
+    renderMeme()
+}
+function onFontSizeDown(size) {
+    const line = getSelectedLine()
+    if (line.size <= 10) return
+    console.log('font size before:', line.size);
+    line.size -= size
+    console.log('current font size:', line.size);
+    renderMeme()
 }
