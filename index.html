@@ -27,7 +27,10 @@
     <section class="editor page">
       <h1>Meme Generator</h1>
       <div class="text-lines-container">
-         <input type="search" id="text" class="text-line" name="text" placeholder="Top text" onclick="onSelectLine(this, 0)" onfocus="onFocusLine(0)" oninput="onSetText(this.value, 0)">
+         <input type="search" id="text" class="text-line" name="text" data-index="0" placeholder="Top text" 
+         onclick="onSelectLine(this, 0)" 
+         onfocus="onFocusLine(0)" 
+         oninput="onSetText(this.value, 0)">
       </div>
       <div class="editor-btns">
          <input type="color" value="#000000" oninput="onSetColor(this.value)" />
@@ -37,9 +40,8 @@
       </div>
                  
         <div class="canvas-container">
-            <canvas
-              width="400"
-              height="400"
+            <canvas width="400" height="400"
+              onclick="onCanvasClick(event)"
             ></canvas>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
             <button class="clear btn" onclick="onClearCanvas()">Clear</button>

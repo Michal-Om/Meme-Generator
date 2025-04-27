@@ -19,8 +19,7 @@ function onSetText(text, idx) {
 
 
 function renderMeme() {
-    // const line = getSelectedLine() // renders only one line
-    console.log('Rendering Meme...');
+    // console.log('Rendering Meme...');
 
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
@@ -37,14 +36,14 @@ function renderMeme() {
 
 
 function renderText(line) {
-    console.log('curr line at render text:', line)
+    // console.log('curr line at render text:', line)
 
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
-    console.log('Rendering text:', line.txt, 'at position:', line.pos)
+    // console.log('Rendering text:', line.txt, 'at position:', line.pos)
 }
 
 //Text Color
@@ -131,18 +130,25 @@ function onAddLine() {
 
 function renderNewLine(idx) {
     console.log('rendering new line input with idx:', idx)
-    const elNewLine = document.querySelector('.text-lines-container')
-    elNewLine.innerHTML += `
-<input 
-type="search" 
-class="text-line" 
-name="text" 
-placeholder="Line ${idx + 1}" 
-onclick="onSelectLine(this, ${idx})" 
-onfocus="onFocusLine(${idx})" 
-oninput="onSetText(this.value, ${idx})">
-`
+    const elNewLine = document.createElement('input')
+
+    //set input attributes (like properties in an object)
+    elNewLine.type = 'search'
+    elNewLine.classList.add('text-line')
+    elNewLine.name = 'text'
+    elNewLine.placeholder = `Line ${idx + 1}`
+
+    elNewLine.setAttribute('oninput', `onSetText(this.value, ${idx})`)
+    elNewLine.setAttribute('data-index', idx)
+
+    elNewLine.addEventListener('click', () => onSelectLine(elNewLine, idx))
+    //event attributes
+    // elNewLine.setAttribute('onclick', `onSelectLine(this, ${idx})`)
+    // elNewLine.setAttribute('onfocus', `onFocusLine(${idx})`)
+    const inputDiv = document.querySelector('.text-lines-container')
+    inputDiv.appendChild(elNewLine)
 }
+
 
 function onFocusLine(idx) {
     gMeme.selectedLineIdx = idx
@@ -152,8 +158,25 @@ function onSelectLine(elLine, idx) {
     console.log('onSelectLine called with idx:', idx)
 
     gMeme.selectedLineIdx = idx  //model
+
     const elInputs = document.querySelectorAll('.text-line')
     elInputs.forEach(input => input.classList.remove('selected'))
     elLine.classList.add('selected')
 }
+
+
+function onCanvasClick(ev) {
+    const { offsetX, offsetY } = ev
+    // console.log('offsetX, offsetY:', offsetX, offsetY);
+
+    const clickedLine = findLineAtPosition(offsetX, offsetY)
+    if (clickedLine) {
+        const idx = gMeme.lines.indexOf(clickedLine)
+
+        const elInput = document.querySelector(`.text-line[data-index="${idx}"]`)
+        onSelectLine(elInput, idx)
+    }
+}
+
+
 

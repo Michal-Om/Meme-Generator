@@ -28,14 +28,11 @@ function getMeme() {
     return gMeme
 }
 
-
 function setLineText(text, idx) {
     const line = gMeme.lines[idx]
     line.txt = text
     console.log('updated line:', line.txt);
     console.log(gMeme);
-
-
 }
 
 function getSelectedLine() { //used for actions on a specific line, like editing
@@ -60,7 +57,7 @@ function setImg(imgId) {
 }
 
 function createLine() {
-    const lineIdx = gMeme.lines.length
+    const lineIdx = gMeme.lines.length //curr length
 
     const newLine = {
         txt: '',
@@ -77,3 +74,20 @@ function createLine() {
     renderNewLine(lineIdx)
 }
 
+function findLineAtPosition(offsetX, offsetY) {
+    const line = gMeme.lines.find(line => {
+        gCtx.font = `${line.size}px ${line.font}` //curr font settings
+        const textHeight = line.size
+        const textWidth = gCtx.measureText(line.txt).width
+
+        const xStart = line.pos.x - (textWidth / 2)
+        const xEnd = line.pos.x + (textWidth / 2)
+        const yStart = line.pos.y - (textHeight / 2)
+        const yEnd = line.pos.y + (textHeight / 2)
+
+        return offsetX >= xStart && offsetX <= xEnd
+            && offsetY >= yStart && offsetY <= yEnd
+    })
+    // console.log('line found at position:', line);
+    return line
+}
