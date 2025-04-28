@@ -17,6 +17,7 @@ var gMeme = {
             size: 20,
             color: 'black',
             pos: { x: 150, y: 50 },// default pos top text
+            isSelected: false,
         },
 
     ],
@@ -32,11 +33,12 @@ function setLineText(text, idx) {
     const line = gMeme.lines[idx]
     line.txt = text
     console.log('updated line:', line.txt);
-    console.log(gMeme);
+    // console.log(gMeme);
 }
 
-function getSelectedLine() { //used for actions on a specific line, like editing
-    return gMeme.lines[gMeme.selectedLineIdx]
+function getSelectedLine() {
+    // return gMeme.lines[gMeme.selectedLineIdx]
+    return gMeme.lines.find(line => line.isSelected)
 }
 
 
@@ -65,6 +67,7 @@ function createLine() {
         size: 20,
         color: 'black',
         pos: { x: 150, y: 50 + (lineIdx * 40) },
+        isSelected: false,
     }
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = lineIdx
@@ -74,6 +77,7 @@ function createLine() {
     renderNewLine(lineIdx)
 }
 
+//bounds of text
 function findLineAtPosition(offsetX, offsetY) {
     const line = gMeme.lines.find(line => {
         gCtx.font = `${line.size}px ${line.font}` //curr font settings
@@ -90,4 +94,9 @@ function findLineAtPosition(offsetX, offsetY) {
     })
     // console.log('line found at position:', line);
     return line
+}
+
+function removeLastLine() {
+    //remove from model
+    gMeme.lines.pop()
 }
