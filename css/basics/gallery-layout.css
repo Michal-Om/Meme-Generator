@@ -1,0 +1,7 @@
+/* Gallery Layout*/
+
+.gallery-layout .img-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}

@@ -2,13 +2,33 @@
   box-sizing: border-box;
 }
 
+html {
+  color: var(--clr-primary--3);
+  font-family: sans-serif;
+}
+
+body {
+  background-color: var(--clr-primary--1);
+  margin: 0;
+}
+
+article .gallery-img {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+article .gallery-img:hover {
+  opacity: 0.5;
+}
+
+a {
+  color: var(--clr-primary--3);
+}
+
 canvas {
   border: 1px solid black;
   margin-top: 1.5em;
-}
-
-.gallery img {
-  cursor: pointer;
 }
 
 .page {
@@ -19,6 +39,7 @@ canvas {
   display: block;
 }
 
+/*inputs*/
 .selected {
   border: 2px solid rgb(0, 225, 255);
 }

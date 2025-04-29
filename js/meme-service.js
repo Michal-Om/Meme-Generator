@@ -2,8 +2,24 @@
 'use strict';
 
 var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['Trump'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['dog', 'puppies'] }
+    { id: 1, url: 'img/1.jpg', keywords: ['Trump', 'angry'] },
+    { id: 2, url: 'img/2.jpg', keywords: ['dog', 'puppies'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['baby', 'puppies'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['cat', 'cute'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['baby', 'angry'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['hair', 'funny'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['baby', 'funny'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['wizard', 'fascinating'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['baby', 'funny'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['obama', 'funny'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['fight', 'angry'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['you', 'want'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['drink', 'smart'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['tough', 'bad'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['confident', 'tough'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['funny', 'joke'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['Putin', 'threat'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['confident', 'know'] },
 ]
 
 var gMeme = {

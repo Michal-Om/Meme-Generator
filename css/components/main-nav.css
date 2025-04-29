@@ -1,5 +1,5 @@
 .main-nav-list {
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .main-nav-list a {
@@ -7,4 +7,7 @@
   place-items: center;
   height: 4rem;
   width: 4rem;
+
+  font-family: sans-serif;
+  font-weight: bold;
 }

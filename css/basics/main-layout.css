@@ -1,0 +1,13 @@
+/* Main Layout*/
+
+.main-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(16px, 1fr)
+    minmax(auto, 1060px)
+    minmax(16px, 1fr);
+}
+
+.main-layout > * {
+  grid-column: 2;
+}

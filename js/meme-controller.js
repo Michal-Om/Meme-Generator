@@ -208,13 +208,10 @@ function onCanvasClick(ev) {
     if (clickedLine.isSelected) {
         unSelectLine(clickedLine)
         return
-        // clearRect(clickedLine.pos.x, clickedLine.pos.y)
     } else {
         gMeme.lines.forEach(line => line.isSelected = false)
         clickedLine.isSelected = true
     }
-
-    // drawRect(clickedLine.pos.x, clickedLine.pos.y)
     const idx = gMeme.lines.indexOf(clickedLine);
     //select line input
     const elInput = document.querySelector(`.text-line[data-index="${idx}"]`)
@@ -247,18 +244,18 @@ function drawRect(x, y) {
     console.log(gMeme);
 
 }
+
 function clearRect() {
-    // If a line is selected, clear the previous rectangle
     const line = getSelectedLine();
     if (!line) return;
 
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height); // Clear the entire canvas
 
-    // Optionally: re-render image if there's one set
+    // re-render image if there's one set
     if (gMeme.img) {
         gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height);
     }
-    renderMeme(); // re-render meme after clearing
+    renderMeme();
 }
 
 
