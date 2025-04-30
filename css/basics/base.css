@@ -12,6 +12,16 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  justify-self: center;
+  color: var(--clr-primary-1);
+}
+
 article .gallery-img {
   width: 100%;
   cursor: pointer;
@@ -20,6 +30,11 @@ article .gallery-img {
 
 article .gallery-img:hover {
   opacity: 0.5;
+}
+
+canvas {
+  border: 1px solid var(--clr-primary-2);
+  border-radius: 10px;
 }
 
 a {

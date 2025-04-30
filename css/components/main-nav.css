@@ -11,3 +11,12 @@
   font-family: sans-serif;
   font-weight: bold;
 }
+
+.btn.btn-toggle-menu {
+  color: var(--clr-primary-base);
+  padding: 0.7em 1em;
+}
+
+.btn-toggle-menu:hover {
+  color: var(--clr-primary-2);
+}

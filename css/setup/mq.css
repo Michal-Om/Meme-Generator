@@ -1,20 +1,44 @@
 /*Small*/
-/* @media (min-width: 640px) {
-  .main-layout {
-    grid-template-columns:
-      minmax(16px, 1fr)
-      minmax(auto, 600px)
-      minmax(16px, 1fr);
+/*Mobile only*/
+@media (max-width: 767px) {
+  .main-nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    height: 100dvh;
+    background-color: var(--clr-primary--1);
+    transform: translateX(100%);
+    transition: transform 0.6s;
+    z-index: 100;
+    min-width: 100px;
   }
 
-} */
+  body.menu-open .main-nav {
+    transform: translateX(0);
+    box-shadow: -6px 0px 19px 0px var(--clr-primary-base);
+  }
+  .main-nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+  .main-nav-list a {
+    justify-self: center;
+    border-bottom: 2px solid var(--clr-primary--2);
+    padding-bottom: 1rem;
+  }
 
+  .main-nav-list a:first-child {
+    margin-top: 1rem;
+  }
+}
 /*Medium*/
 @media (min-width: 768px) {
   .gallery-layout .img-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5em;
+  }
+  .btn-toggle-menu {
+    display: none;
   }
 }
 
@@ -32,7 +56,7 @@
 
   .editor-layout .wrapper {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 89px);
+    grid-template-rows: repeat(4, auto);
   }
 
   .editor-layout .wrapper .canvas-container {

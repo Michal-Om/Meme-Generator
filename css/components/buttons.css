@@ -1,0 +1,52 @@
+/*btns*/
+
+.btn {
+  background-color: var(--clr-primary--1);
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--clr-primary-1);
+  padding: 0.5em;
+  border: 1px solid var(--clr-primary-base);
+}
+
+.btn:hover {
+  background-color: var(--clr-primary-base);
+  cursor: pointer;
+}
+
+.btn-like {
+  text-decoration: none;
+  background-color: var(--clr-primary--1);
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  color: var(--clr-primary-1);
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+.btn-like:hover {
+  background-color: var(--clr-primary-base);
+  color: var(--clr-primary-1);
+}
+
+.editor-action-btns,
+.editor-font-btns,
+.editor-text-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  width: 400px;
+  padding: 1em;
+}
+
+.font-align-left.btn img,
+.font-align-center.btn img,
+.font-align-right.btn img {
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+}

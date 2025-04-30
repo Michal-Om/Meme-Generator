@@ -13,6 +13,8 @@
 @import url("./components/header.css");
 @import url("./components/main-nav.css");
 @import url("./components/logo.css");
+@import url("./components/main-screen.css");
+@import url("./components/buttons.css");
 
 /*MQ*/
 @import url("./setup/mq.css");

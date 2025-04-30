@@ -121,6 +121,13 @@ function onFontSizeDown(size) {
     renderMeme()
 }
 
+function onFontChange(font) {
+    const line = getSelectedLine()
+    line.font = font
+    renderMeme()
+}
+
+onAlign
 //Add Text lines
 function onAddLine() {
     createLine() //model
@@ -258,5 +265,7 @@ function clearRect() {
     renderMeme();
 }
 
-
+function toggleMenu() {
+    document.body.classList.toggle("menu-open");
+}
 

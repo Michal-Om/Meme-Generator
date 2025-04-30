@@ -29,10 +29,10 @@ var gMeme = {
 
         {
             txt: '',
-            font: 'Arial',
+            font: 'Impact',
             size: 20,
             color: 'black',
-            pos: { x: 150, y: 50 },// default pos top text
+            pos: { x: 200, y: 50 },// default pos top text
             isSelected: false,
         },
 
@@ -79,10 +79,10 @@ function createLine() {
 
     const newLine = {
         txt: '',
-        font: 'Arial',
+        font: 'Impact',
         size: 20,
         color: 'black',
-        pos: { x: 150, y: 50 + (lineIdx * 40) },
+        pos: { x: 200, y: 50 + (lineIdx * 40) },
         isSelected: false,
     }
     gMeme.lines.push(newLine)
