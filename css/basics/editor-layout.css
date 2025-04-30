@@ -1,0 +1,92 @@
+.editor-layout .wrapper {
+  display: grid;
+  grid-template-columns:
+    minmax(16px, 1fr)
+    minmax(auto, 600px)
+    minmax(16px, 1fr);
+  justify-items: center;
+  gap: 1em;
+}
+
+.editor-layout .wrapper > * {
+  grid-column: 2;
+}
+
+h1 {
+  justify-self: center;
+  color: var(--clr-primary-1);
+}
+
+canvas {
+  border: 1px solid var(--clr-primary-2);
+  border-radius: 10px;
+}
+
+.text-lines-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/*inputs*/
+
+.text-line {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid var(--clr-primary-base);
+  background-color: var(--clr-primary--3);
+}
+
+.text-line.selected {
+  border: 2px solid var(--clr-primary-3);
+}
+
+/*btns*/
+
+.btn {
+  background-color: var(--clr-primary--1);
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--clr-primary-1);
+  padding: 0.5em;
+  border: 1px solid var(--clr-primary-base);
+}
+
+.btn:hover {
+  background-color: var(--clr-primary-base);
+  cursor: pointer;
+}
+
+.btn-like {
+  text-decoration: none;
+  background-color: var(--clr-primary--1);
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  color: var(--clr-primary-1);
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+.btn-like:hover {
+  background-color: var(--clr-primary-base);
+  color: var(--clr-primary-1);
+}
+
+.editor-action-btns,
+.editor-font-btns,
+.editor-text-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  width: 400px;
+  padding: 1em;
+}

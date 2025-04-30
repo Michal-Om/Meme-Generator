@@ -1,11 +1,10 @@
 .main-header {
-  /* min-height: 80px; */
-  padding-block: 10px;
+  padding-block: 0.7em;
   width: 100%;
-  background-image: linear-gradient(
-    to right,
-    var(--clr-primary-2),
-    var(--clr-primary-1)
-  );
+  background-color: var(--clr-primary--1);
   border-radius: 10px;
+}
+
+.full {
+  grid-column: 1/-1;
 }

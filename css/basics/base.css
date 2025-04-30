@@ -3,12 +3,12 @@
 }
 
 html {
-  color: var(--clr-primary--3);
+  color: var(--clr-primary-base);
   font-family: sans-serif;
 }
 
 body {
-  background-color: var(--clr-primary--1);
+  background-color: var(--clr-primary--2);
   margin: 0;
 }
 
@@ -23,12 +23,11 @@ article .gallery-img:hover {
 }
 
 a {
-  color: var(--clr-primary--3);
+  color: var(--clr-primary-base);
 }
 
-canvas {
-  border: 1px solid black;
-  margin-top: 1.5em;
+a:hover {
+  color: var(--clr-primary-2);
 }
 
 .page {
@@ -37,9 +36,4 @@ canvas {
 
 .page.active {
   display: block;
-}
-
-/*inputs*/
-.selected {
-  border: 2px solid rgb(0, 225, 255);
 }

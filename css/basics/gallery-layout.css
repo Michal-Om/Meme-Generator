@@ -5,3 +5,8 @@
   grid-template-columns: 1fr;
   gap: 1em;
 }
+
+.gallery-layout h2 {
+  justify-self: center;
+  color: var(--clr-primary-1);
+}

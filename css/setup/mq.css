@@ -19,14 +19,28 @@
 }
 
 /*Large*/
-@media (min-width: 1100px) {
+@media (min-width: 1060px) {
   .main-layout {
     grid-template-columns:
       minmax(16px, 1fr)
-      minmax(auto, 1060px)
+      minmax(auto, 1020px)
       minmax(16px, 1fr);
   }
   .gallery-layout .img-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .editor-layout .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 89px);
+  }
+
+  .editor-layout .wrapper .canvas-container {
+    grid-column: 1;
+    grid-row: 1/-1;
+  }
+
+  .editor-layout .wrapper > *:not(.canvas-container) {
+    grid-column: 2;
   }
 }

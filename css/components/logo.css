@@ -1,6 +1,6 @@
 .logo {
-  color: var(--clr-primary-3);
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 1.875em;
-  letter-spacing: 0.2em;
+  color: var(--clr-primary-base);
+  font-family: cherry_bomb;
+  font-size: 2.5em;
+  padding-bottom: 0.2em;
 }

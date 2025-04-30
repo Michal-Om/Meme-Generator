@@ -8,8 +8,9 @@
   </head>
   <body onload="onInit()" class="main-layout">
     
-    <header class="main-header flex space-between align-center">
-        <div class="logo">LOGO</div>
+    <header class="main-header main-layout full ">
+      <div class="main-header-container flex space-between align-center">
+        <div class="logo">Fun Memes</div>
         <nav class="main-nav">
           <ul class="main-nav-list clean-list flex">
             <li><a href="#" class="active" onclick="showGallery()">Gallery</a></li>
@@ -17,35 +18,43 @@
             <li><a href="#">About</a></li>
           </ul>
         </nav>
+      </div>
+        
     </header>
     
     <section class="gallery page active gallery-layout">
-      <h2>Select an image</h2>
+      <h2>Select an Image</h2>
       <div class="img-grid"></div> 
     </section>
 
-    <section class="editor page">
+    <section class="editor page editor-layout">
       <h1>Meme Generator</h1>
+      <div class="wrapper">
+        <div class="canvas-container">
+            <canvas width="400" height="400"
+              onclick="onCanvasClick(event)"
+            ></canvas>
+        </div>
       <div class="text-lines-container">
          <input type="search" id="text" class="text-line" name="text" data-index="0" placeholder="Top text" 
          onclick="onSelectLine(this, 0)" 
          onfocus="onFocusLine(0)" 
          oninput="onSetText(this.value, 0)">
       </div>
-      <div class="editor-btns">
-         <input type="color" value="#000000" oninput="onSetColor(this.value)" />
-          <button class="add-text btn" onclick="onAddLine()">Add Text Line</button>
-          <button class="remove-text btn" onclick="onRemoveLine()">Remove Text Line</button>
+      <div class="editor-text-btns">
+            <button class="add-text btn" onclick="onAddLine()">Add Text Line</button>
+            <button class="remove-text btn" onclick="onRemoveLine()">Remove Text Line</button>
+          </div> 
+          <div class="editor-font-btns">
             <button class="font-inc btn" onclick="onFontSizeUp(10)">A+</button>
             <button class="font-dec btn" onclick="onFontSizeDown(10)">A-</button>
-      </div>
-                 
-        <div class="canvas-container">
-            <canvas width="400" height="400"
-              onclick="onCanvasClick(event)"
-            ></canvas>
-            <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
+            <input type="color" value="#000000" oninput="onSetColor(this.value)" />
+          </div>
+          <div class="editor-action-btns">
+            <a href="#" onclick="onDownloadCanvas(this)" class="btn-like" download="file-name">Download</a>
+            <button class="share btn">Share</button>
             <button class="clear btn" onclick="onClearCanvas()">Clear</button>
+      </div>        
     </section>
  
     <script src="js/meme-controller.js"></script>
