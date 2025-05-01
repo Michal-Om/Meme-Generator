@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/393ad24492.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Meme Generator</title>
   </head>
   <body class="main-layout" onload="onInit()">
@@ -45,22 +49,21 @@
          oninput="onSetText(this.value, 0)">
       </div>
       <div class="editor-text-btns">
-            <button class="add-text btn" onclick="onAddLine()">Add Text Line</button>
-            <button class="remove-text btn" onclick="onRemoveLine()">Remove Text Line</button>
+        <button class="fa-solid fa-plus btn" onclick="onAddLine()"></button>
+        <button class="fa-solid fa-trash btn" onclick="onRemoveLine()"></button>
+            <button class="fa-solid fa-arrow-up btn" onclick="onMoveLineUp()"></button>
+            <button class="fa-solid fa-arrow-down btn" onclick="onMoveLineDown()"></button>
+            <button class="switch btn" onclick="onSwitchLine()">⇅</button>
+          
           </div> 
           <div class="editor-font-btns">
             <button class="font-inc btn" onclick="onFontSizeUp(10)">A+</button>
             <button class="font-dec btn" onclick="onFontSizeDown(10)">A-</button>
            
-            <button class="font-align-left btn" onclick="onFontAlignLeft()">
-              <img src="/fonts/format-align-left_119112.png">
-            </button>
-            <button class="font-align-center btn" onclick="onFontAlignCenter()">
-              <img src="/fonts/format-align-center_119114.png">
-            </button>
-            <button class="font-align-right btn" onclick="onFontAlignRight()">
-              <img src="/fonts/align-right.png">
-            </button>
+            <button class="fa-solid fa-align-left btn" onclick="onFontAlignLeft()"></button>
+            <button class="fa-solid fa-align-center btn" onclick="onFontAlignCenter()"></button>      
+            <button class="fa-solid fa-align-right btn" onclick="onFontAlignRight()"></button>
+       
             <select name="fonts" class="font-family btn" id="font-select" onchange="onFontChange(this.value)">
               <option value="monospace">monospace</option>
               <option value="Arial">Arial</option>

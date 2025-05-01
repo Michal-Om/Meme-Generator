@@ -36,6 +36,11 @@
   border: 2px solid var(--clr-primary-3);
 }
 
+.text-line:focus {
+  outline: none;
+  border: 2px solid var(--clr-primary-3);
+}
+
 /*font editor container*/
 .editor-font-btns {
   flex-wrap: wrap;

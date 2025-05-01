@@ -8,6 +8,11 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
+    const firstLine = gMeme.lines[0].txt
+    const elInput = document.querySelector(`.text-line[data-index="0"]`)
+    elInput.value = firstLine
+    renderMeme()
+
 }
 
 function onSetText(text, idx) {
@@ -34,19 +39,13 @@ function renderMeme() {
 function renderText(line) {
     // console.log('curr line at render text:', line)
     gCtx.font = `${line.size}px ${line.font}`
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = line.align
     gCtx.textBaseline = 'middle'
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
     // console.log('Rendering text:', line.txt, 'at position:', line.pos)
 }
 
-//Text Color
-function onSetColor(color) {
-    const line = getSelectedLine()
-    line.color = color
-    renderMeme()
-}
 
 // function getEvPos(ev) {
 //     const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -70,18 +69,7 @@ function onSetColor(color) {
 //     return pos
 // }
 
-function onDownloadCanvas(elLink) {
-    const dataUrl = gElCanvas.toDataURL() //converts graphics data to an img format
-    elLink.href = dataUrl //move img data to the link
-    elLink.download = 'my-meme' //set a name for the downloded file
-}
 
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gMeme.lines.forEach(line => {
-        line.isSelected = false
-    })
-}
 
 //Images
 
@@ -103,7 +91,7 @@ function showGallery() {
 
 }
 
-//Font Size changes
+//Font changes
 function onFontSizeUp(size) {
     const line = getSelectedLine()
     if (line.size >= 100) return
@@ -127,7 +115,34 @@ function onFontChange(font) {
     renderMeme()
 }
 
-onAlign
+function onFontAlignLeft() {
+    const line = getSelectedLine()
+    line.align = 'left'
+    line.pos.x = 20
+    renderMeme()
+}
+
+function onFontAlignCenter() {
+    const line = getSelectedLine()
+    line.align = 'center'
+    line.pos.x = gElCanvas.width / 2
+    renderMeme()
+}
+
+function onFontAlignRight() {
+    const line = getSelectedLine()
+    line.align = 'right'
+    line.pos.x = gElCanvas.width - 20
+    renderMeme()
+}
+
+//Text Color
+function onSetColor(color) {
+    const line = getSelectedLine()
+    line.color = color
+    renderMeme()
+}
+
 //Add Text lines
 function onAddLine() {
     createLine() //model
@@ -165,9 +180,7 @@ function renderNewLine(idx) {
     elNewLine.setAttribute('data-index', idx)
 
     elNewLine.addEventListener('click', () => onSelectLine(elNewLine, idx))
-    //event attributes
-    // elNewLine.setAttribute('onclick', `onSelectLine(this, ${idx})`)
-    // elNewLine.setAttribute('onfocus', `onFocusLine(${idx})`)
+
     const inputDiv = document.querySelector('.text-lines-container')
     inputDiv.appendChild(elNewLine)
 }
@@ -177,19 +190,23 @@ function onFocusLine(idx) {
     gMeme.selectedLineIdx = idx
 }
 
-
 function onSelectLine(elLine, idx) {
     console.log('onSelectLine called with idx:', idx)
     //model
     gMeme.lines.forEach(line => line.isSelected = false)
     gMeme.selectedLineIdx = idx
-    gMeme.lines[idx].isSelected = true
+    const selectedLine = gMeme.lines[idx]
+
+    selectedLine.isSelected = true
     //dom
     const elInputs = document.querySelectorAll('.text-line')
     elInputs.forEach(input => input.classList.remove('selected'))
     elLine.classList.add('selected')
-
     renderMeme()
+
+    if (!selectedLine.txt) return
+    drawRect(selectedLine.pos.x, selectedLine.pos.y)
+
 }
 
 function unSelectLine(line) {
@@ -202,18 +219,50 @@ function unSelectLine(line) {
     renderMeme()
 }
 
+function onSwitchLine() {
+    //collect all inputs
+    const elInputs = document.querySelectorAll('.text-line')
+    const currNumLines = elInputs.length
+
+    //find currently selected input
+    const currInput = document.querySelector('.text-line.selected')
+    if (!currInput) return
+
+    let currInputIdx = +currInput.dataset.index
+    console.log('Input Idx before switch:', currInputIdx);
+
+    //remove class selected from all -> maybe not needed from all?
+    elInputs.forEach(input => input.classList.remove('selected'))
+
+    let nextInputIdx = currInputIdx + 1
+    if (nextInputIdx === currNumLines) {
+        nextInputIdx = 0
+    }
+    elInputs[nextInputIdx].classList.add('selected')
+    console.log('Input Idx after switch:', nextInputIdx);
+
+    //update model
+    gMeme.selectedLineIdx = nextInputIdx
+    const nextInputLine = gMeme.lines[nextInputIdx]
+    nextInputLine.isSelected = true
+    clearRect()
+    drawRect(nextInputLine.pos.x, nextInputLine.pos.y)
+    console.log(gMeme.lines);
+
+}
+
 function onCanvasClick(ev) {
     const { offsetX, offsetY } = ev
     // console.log('offsetX, offsetY:', offsetX, offsetY);
     const clickedLine = findLineAtPosition(offsetX, offsetY) // returns object
 
-    if (!clickedLine) return // exit if no line was clicked
-
-    clearRect()
+    // Find the position of the selected line and draw rect arount it
+    drawRect(clickedLine.pos.x, clickedLine.pos.y)
 
     //unselect if already selected
     if (clickedLine.isSelected) {
         unSelectLine(clickedLine)
+        clearRect()
         return
     } else {
         gMeme.lines.forEach(line => line.isSelected = false)
@@ -223,9 +272,6 @@ function onCanvasClick(ev) {
     //select line input
     const elInput = document.querySelector(`.text-line[data-index="${idx}"]`)
     onSelectLine(elInput, idx)
-
-    // Find the position of the selected line and draw rect arount it
-    drawRect(clickedLine.pos.x, clickedLine.pos.y)
 }
 
 function drawRect(x, y) {
@@ -265,7 +311,34 @@ function clearRect() {
     renderMeme();
 }
 
+//more actions
+function onDownloadCanvas(elLink) {
+    const dataUrl = gElCanvas.toDataURL() //converts graphics data to an img format
+    elLink.href = dataUrl //move img data to the link
+    elLink.download = 'my-meme' //set a name for the downloded file
+}
+
+function onClearCanvas() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    gMeme.lines.forEach(line => {
+        line.isSelected = false
+    })
+}
+
 function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
 
+function onMoveLineUp() {
+    const line = getSelectedLine();
+    line.pos.y -= 1
+    console.log(line.pos.y);
+    renderMeme()
+}
+
+function onMoveLineDown() {
+    const line = getSelectedLine();
+    line.pos.y += 1
+    // console.log(line.pos.y);
+    renderMeme()
+}

@@ -28,11 +28,12 @@ var gMeme = {
     lines: [
 
         {
-            txt: '',
+            txt: 'Sometimes I eat Falafel',
             font: 'Impact',
             size: 20,
             color: 'black',
             pos: { x: 200, y: 50 },// default pos top text
+            align: 'center',
             isSelected: false,
         },
 
@@ -83,6 +84,7 @@ function createLine() {
         size: 20,
         color: 'black',
         pos: { x: 200, y: 50 + (lineIdx * 40) },
+        align: 'center',
         isSelected: false,
     }
     gMeme.lines.push(newLine)

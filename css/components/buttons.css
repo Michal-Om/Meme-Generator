@@ -43,10 +43,7 @@
   padding: 1em;
 }
 
-.font-align-left.btn img,
-.font-align-center.btn img,
-.font-align-right.btn img {
-  height: 1em;
-  width: 1em;
-  vertical-align: middle;
+.switch.btn {
+  max-height: 2.1em;
+  max-width: 2.1em;
 }
