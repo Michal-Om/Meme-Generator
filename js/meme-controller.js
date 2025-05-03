@@ -46,7 +46,6 @@ function renderText(line) {
     // console.log('Rendering text:', line.txt, 'at position:', line.pos)
 }
 
-
 // function getEvPos(ev) {
 //     const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
@@ -75,7 +74,7 @@ function renderText(line) {
 
 function onImgSelect(imgId) {
     setImg(imgId)
-    showEditor()// toggle somehow
+    showEditor()
 }
 
 //Pages toggle
@@ -143,7 +142,7 @@ function onSetColor(color) {
     renderMeme()
 }
 
-//Add Text lines
+//Text lines Actions
 function onAddLine() {
     createLine() //model
 }
@@ -163,6 +162,20 @@ function onRemoveLine() {
     const inputContainer = document.querySelector('.text-lines-container') //parent
     inputContainer.removeChild(elLastInput)
 
+    renderMeme()
+}
+
+function onMoveLineUp() {
+    const line = getSelectedLine();
+    line.pos.y -= 1
+    console.log(line.pos.y);
+    renderMeme()
+}
+
+function onMoveLineDown() {
+    const line = getSelectedLine();
+    line.pos.y += 1
+    // console.log(line.pos.y);
     renderMeme()
 }
 
@@ -322,23 +335,12 @@ function onClearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gMeme.lines.forEach(line => {
         line.isSelected = false
+        line.txt = ''
     })
+    gMeme.img = null
 }
 
 function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
 
-function onMoveLineUp() {
-    const line = getSelectedLine();
-    line.pos.y -= 1
-    console.log(line.pos.y);
-    renderMeme()
-}
-
-function onMoveLineDown() {
-    const line = getSelectedLine();
-    line.pos.y += 1
-    // console.log(line.pos.y);
-    renderMeme()
-}

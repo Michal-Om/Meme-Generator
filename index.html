@@ -75,8 +75,24 @@
             <input type="color" value="#000000" oninput="onSetColor(this.value)" />
           </div>
           <div class="editor-action-btns">
-            <a href="#" onclick="onDownloadCanvas(this)" class="btn-like" download="file-name">Download</a>
-            <button class="share btn">Share</button>
+            <a href="#" onclick="onDownloadCanvas(this)" class="btn-like" download="file-name">Download &#10515;</a>
+            <form
+        method="POST"
+        enctype="multipart/form-data"
+        onsubmit="onShareImg(event)"
+      >
+        <button class="share btn" type="submit">Share &#10149;</button>
+      </form>
+      <label for="upload" class="upload btn">Upload &#8613;
+        <input
+        type="file"
+        id="upload"
+        class="file-input btn"
+        name="image"
+        onchange="onImgInput(event)"
+      />
+      </label>
+      
             <button class="clear btn" onclick="onClearCanvas()">Clear</button>
       </div>        
     </section>
@@ -84,5 +100,6 @@
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/upload-share.js"></script>
   </body>
 </html>
