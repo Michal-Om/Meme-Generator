@@ -20,6 +20,8 @@ var gImgs = [
     { id: 16, url: 'img/16.jpg', keywords: ['funny', 'joke'] },
     { id: 17, url: 'img/17.jpg', keywords: ['Putin', 'threat'] },
     { id: 18, url: 'img/18.jpg', keywords: ['confident', 'know'] },
+    { id: 19, url: 'img2/19.jpg', keywords: ['happy', 'free'] },
+    { id: 20, url: 'img2/20.jpg', keywords: ['dog', 'yoga', 'relax'] },
 ]
 
 var gMeme = {
@@ -64,12 +66,14 @@ function getImgById(imgId) {
     return img
 }
 
-
+//Set Img from gallery to original canvas size
 function setImg(imgId) {
     const selectedImg = getImgById(imgId)
     const img = new Image()
     img.src = selectedImg.url
     img.onload = () => {
+        gElCanvas.width = 400
+        gElCanvas.height = 400
         gMeme.img = img  // store selected img in object
         renderMeme() // render only after image is loaded
     }

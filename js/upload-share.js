@@ -19,7 +19,8 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function renderImg(img) {
-    // gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    //use natural img size and fit canvas to it
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
