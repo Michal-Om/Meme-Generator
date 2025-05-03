@@ -6,6 +6,7 @@
     minmax(16px, 1fr);
   justify-items: center;
   gap: 1em;
+  margin-bottom: 2em;
 }
 
 .editor-layout .wrapper > * {
@@ -44,4 +45,32 @@
 /*font editor container*/
 .editor-font-btns {
   flex-wrap: wrap;
+}
+
+/*Emojis and container*/
+.emojis-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  gap: 3em;
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  width: 400px;
+  padding: 1em;
+}
+
+.emojis-container img.selected {
+  border: 2px solid var(--clr-primary-3);
+  border-radius: 5px;
+  padding: 1px;
+}
+.emojis-container img {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.emojis-container img:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }

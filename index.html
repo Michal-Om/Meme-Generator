@@ -39,6 +39,10 @@
       <div class="wrapper">
         <div class="canvas-container">
             <canvas width="400" height="400"
+            onmousedown="onDown(event)"
+            ontouchstart="onDown(event)"
+            onmouseup="onUp()"
+            ontouchend="onUp()"
               onclick="onCanvasClick(event)"
             ></canvas>
         </div>
@@ -72,8 +76,21 @@
               <option value="Verdana">Verdana</option>
               <option value="serif">serif</option>
             </select>
-            <input type="color" value="#000000" oninput="onSetColor(this.value)" />
+            
+              <input type="color" value="#000000" oninput="onSetColor(this.value)" />
           </div>
+
+          <div class="emojis-container">
+            <img src="/img/Emojis/emoji1.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji2.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji3.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji4.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji5.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji6.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji7.png" onclick="onSelectEmoji(this)">
+            <img src="/img/Emojis/emoji8.png" onclick="onSelectEmoji(this)">
+          </div>
+
           <div class="editor-action-btns">
             <a href="#" onclick="onDownloadCanvas(this)" class="btn-like" download="file-name">Download &#10515;</a>
             <form

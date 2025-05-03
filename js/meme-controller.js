@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+let gIsMouseDown = false
 
 
 function onInit() {
@@ -30,6 +31,10 @@ function renderMeme() {
         gElCanvas.height = (gMeme.img.naturalHeight / gMeme.img.naturalWidth) * gElCanvas.width
         gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
+    gMeme.emojis.forEach(emoji => {
+        gCtx.drawImage(emoji.img, emoji.pos.x, emoji.pos.y, emoji.size, emoji.size)
+    })
+
     gMeme.lines.forEach(line => { //render all existing text lines 
         if (line.txt) {
             renderText(line)
@@ -70,12 +75,51 @@ function getEvPos(ev) {
     return pos
 }
 
-
 //Images
 //Choose Img from gallery
 function onImgSelect(imgId) {
     setImg(imgId)
     showEditor()
+}
+
+//Emojis
+function onSelectEmoji(elEmoji) {
+    elEmoji.classList.add('selected')
+    if (gMeme.selectedEmoji) gMeme.selectedEmoji.classList.remove('selected')
+    if (gMeme.selectedEmoji === elEmoji) {
+        gMeme.selectedEmoji = null
+    } else {
+        gMeme.selectedEmoji = elEmoji
+    }
+    console.log('selected emoji:', gMeme.selectedEmoji);
+}
+
+function unSelectEmoji() {
+    const elEmoji = document.querySelector('.emojis-container img.selected')
+    if (!elEmoji) return
+    elEmoji.classList.remove('selected')
+    gMeme.selectedEmoji = null
+}
+
+function onDown(ev) {
+    console.log('onDown');
+    gIsMouseDown = true
+    //image tool: stamp once without dragging
+    if (gMeme.selectedEmoji) {
+        const pos = getEvPos(ev)
+        gCtx.drawImage(gMeme.selectedEmoji, pos.x - 20, pos.y - 20, 40, 40)
+        //store in model
+        gMeme.emojis.push({
+            img: gMeme.selectedEmoji,
+            pos: { x: pos.x - 20, y: pos.y - 20 },
+            size: 40,
+        })
+        return
+    }
+}
+
+function onUp() {
+    gIsMouseDown = false
 }
 
 //Pages toggle
@@ -97,6 +141,7 @@ function onFontSizeUp(size) {
     if (line.size >= 100) return
     line.size += size
     console.log('current font size:', line.size);
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -106,12 +151,14 @@ function onFontSizeDown(size) {
     console.log('font size before:', line.size);
     line.size -= size
     console.log('current font size:', line.size);
+    unSelectEmoji()
     renderMeme()
 }
 
 function onFontChange(font) {
     const line = getSelectedLine()
     line.font = font
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -119,13 +166,15 @@ function onFontAlignLeft() {
     const line = getSelectedLine()
     line.align = 'left'
     line.pos.x = 20
+    unSelectEmoji()
     renderMeme()
 }
 
 function onFontAlignCenter() {
     const line = getSelectedLine()
     line.align = 'center'
-    line.pos.x = gElCanvas.width / 2
+    line.pos.x = gElCanvas.width / 2.
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -133,6 +182,7 @@ function onFontAlignRight() {
     const line = getSelectedLine()
     line.align = 'right'
     line.pos.x = gElCanvas.width - 20
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -140,6 +190,7 @@ function onFontAlignRight() {
 function onSetColor(color) {
     const line = getSelectedLine()
     line.color = color
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -170,13 +221,15 @@ function onMoveLineUp() {
     const line = getSelectedLine();
     line.pos.y -= 1
     console.log(line.pos.y);
+    unSelectEmoji()
     renderMeme()
 }
 
 function onMoveLineDown() {
     const line = getSelectedLine();
-    line.pos.y += 1
+    line.pos.y += 3
     // console.log(line.pos.y);
+    unSelectEmoji()
     renderMeme()
 }
 
@@ -199,7 +252,7 @@ function renderNewLine(idx) {
     inputDiv.appendChild(elNewLine)
 }
 
-//maybe redundant??
+//maybe redundant?? maybe call it getLineIdx
 function onFocusLine(idx) {
     gMeme.selectedLineIdx = idx
 }
@@ -216,6 +269,7 @@ function onSelectLine(elLine, idx) {
     const elInputs = document.querySelectorAll('.text-line')
     elInputs.forEach(input => input.classList.remove('selected'))
     elLine.classList.add('selected')
+    unSelectEmoji()
     renderMeme()
 
     if (!selectedLine.txt) return
@@ -269,6 +323,7 @@ function onCanvasClick(ev) {
     const { offsetX, offsetY } = ev
     // console.log('offsetX, offsetY:', offsetX, offsetY);
     const clickedLine = findLineAtPosition(offsetX, offsetY) // returns object
+    if (!clickedLine) return
 
     // Find the position of the selected line and draw rect arount it
     drawRect(clickedLine.pos.x, clickedLine.pos.y)
@@ -339,6 +394,8 @@ function onClearCanvas() {
         line.txt = ''
     })
     gMeme.img = null
+    gMeme.emojis = []
+    gMeme.selectedEmoji = null
 }
 
 function toggleMenu() {

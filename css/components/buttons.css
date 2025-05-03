@@ -52,6 +52,7 @@
   max-width: 2.1em;
 }
 
+.color-picker input,
 .upload input {
   display: none;
 }
