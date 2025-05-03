@@ -1,6 +1,10 @@
 
 'use strict';
 
+const STORAGE_KEY = 'memeDB'
+
+var gMemes = loadFromStorage(STORAGE_KEY) || []
+
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['Trump', 'angry'] },
     { id: 2, url: 'img/2.jpg', keywords: ['dog', 'puppies'] },
@@ -46,23 +50,43 @@ var gMeme = {
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-function getMeme() {
-    return gMeme
+// handle ready memes 
+function getMemes() {
+    return gMemes
 }
 
-function setLineText(text, idx) {
-    const line = gMeme.lines[idx]
-    line.txt = text
-    console.log('updated line:', line.txt);
-    // console.log(gMeme);
+function removeMeme(memeId) {
+    const memeIdx = gMemes.findIndex(meme => memeId === meme.id)
+    gMemes.splice(memeIdx, 1)
+    _saveMemesToStorage()
 }
 
-function getSelectedLine() {
-    // return gMeme.lines[gMeme.selectedLineIdx]
-    return gMeme.lines.find(line => line.isSelected)
+function addMeme(data) {
+    const meme = _createMeme(data)
+    //add to beginning of array
+    gMemes.unshift(meme)
+    _saveMemesToStorage()
+    return meme
 }
 
+function getMemeById(memeId) {
+    const meme = gMemes.find(meme => memeId === meme.id)
+    return meme
+}
 
+function _createMeme(data) {
+    return {
+        id: makeId(),
+        createdAt: Date.now(),
+        data
+    }
+}
+
+function _saveMemesToStorage() {
+    saveToStorage(STORAGE_KEY, gMemes)
+}
+
+//Handle images
 function getImgById(imgId) {
     const img = gImgs.find(img => +imgId === img.id)
     return img
@@ -79,6 +103,19 @@ function setImg(imgId) {
         gMeme.img = img  // store selected img in object
         renderMeme() // render only after image is loaded
     }
+}
+
+//Handle Text Lines
+function setLineText(text, idx) {
+    const line = gMeme.lines[idx]
+    line.txt = text
+    console.log('updated line:', line.txt);
+    // console.log(gMeme);
+}
+
+function getSelectedLine() {
+    // return gMeme.lines[gMeme.selectedLineIdx]
+    return gMeme.lines.find(line => line.isSelected)
 }
 
 function createLine() {

@@ -30,7 +30,7 @@
   padding: 0.5em;
   border-radius: 5px;
   border: 1px solid var(--clr-primary-base);
-  background-color: var(--clr-primary--3);
+  background-color: var(--clr-primary--2);
 }
 
 .text-line.selected {
@@ -52,7 +52,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: auto;
+  /* overflow-x: auto; */
+  overflow-x: scroll;
+  scrollbar-color: var(--clr-primary-base) var(--clr-primary-2);
+  scrollbar-width: thin;
   gap: 3em;
   border: 1px solid var(--clr-primary-base);
   border-radius: 5px;
@@ -73,4 +76,34 @@
 .emojis-container img:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+/*SAVED MEMES*/
+
+.saved-memes-grid {
+  display: grid;
+  /*auto-fill fills the rows with as many cols that can fit*/
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.saved-memes-grid article {
+  position: relative;
+  width: 100%;
+  display: block;
+  border: 1px solid var(--clr-primary-base);
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+.saved-memes-grid article button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.saved-memes-grid article img {
+  width: 100%;
+  cursor: pointer;
 }

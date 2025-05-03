@@ -13,7 +13,7 @@ function onInit() {
     const elInput = document.querySelector(`.text-line[data-index="0"]`)
     elInput.value = firstLine
     renderMeme()
-
+    renderSavedMemes()
 }
 
 function onSetText(text, idx) {
@@ -127,11 +127,15 @@ function showEditor() {
     document.querySelector('.editor').classList.add('active')
     document.querySelector('.gallery').classList.remove('active')
 
+    document.querySelector('.saved-memes').style.display = 'block';
+
 }
 
 function showGallery() {
     document.querySelector('.gallery').classList.add('active')
     document.querySelector('.editor').classList.remove('active')
+
+    document.querySelector('.saved-memes').style.display = 'none';
 
 }
 
@@ -380,6 +384,39 @@ function clearRect() {
     renderMeme();
 }
 
+//Saved Memes actions
+function renderSavedMemes() {
+    const memes = getMemes()
+    const elMemes = document.querySelector('.saved-memes-grid')
+    elMemes.innerHTML = memes.map(meme => {
+        return `
+        <article>
+            <button onclick="onRemoveMeme('${meme.id}')" class="remove-btn btn">x</button>
+            <img src="${meme.data}" onclick="onSelectMeme('${meme.id}')">
+        </article>
+        `
+    }).join('')
+}
+
+function onSelectMeme(memeId) {
+    const meme = getMemeById(memeId)
+    const img = new Image()
+    img.src = meme.data
+    renderImg(img)
+}
+
+
+function onRemoveMeme(memeId) {
+    removeMeme(memeId)
+    renderSavedMemes()
+}
+
+
+function onSave() {
+    const data = gElCanvas.toDataURL()
+    addMeme(data)
+    renderSavedMemes()
+}
 //more actions
 function onDownloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL() //converts graphics data to an img format

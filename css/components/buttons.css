@@ -44,9 +44,10 @@
 }
 
 .editor-action-btns {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
+.remove-btn,
 .switch.btn {
   max-height: 2.1em;
   max-width: 2.1em;
@@ -55,4 +56,21 @@
 .color-picker input,
 .upload input {
   display: none;
+}
+
+#font-select:hover {
+  background-color: var(--clr-primary--3);
+}
+
+#font-select:focus {
+  outline: none;
+  border: 2px solid var(--clr-primary-3);
+}
+
+.remove-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  padding: 1em;
 }
