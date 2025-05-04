@@ -78,8 +78,12 @@ function getEvPos(ev) {
 //Images
 //Choose Img from gallery
 function onImgSelect(imgId) {
+    gMeme.selectedImgId = imgId
     setImg(imgId)
     showEditor()
+    console.log('imgId', imgId);
+    console.log('curr gMeme after setting imgId', gMeme);
+
 }
 
 //Emojis
@@ -166,7 +170,7 @@ function onFontChange(font) {
     renderMeme()
 }
 
-function onFontAlignLeft() {
+function onAlignLeft() {
     const line = getSelectedLine()
     line.align = 'left'
     line.pos.x = 20
@@ -174,7 +178,7 @@ function onFontAlignLeft() {
     renderMeme()
 }
 
-function onFontAlignCenter() {
+function onAlignCenter() {
     const line = getSelectedLine()
     line.align = 'center'
     line.pos.x = gElCanvas.width / 2.
@@ -182,7 +186,7 @@ function onFontAlignCenter() {
     renderMeme()
 }
 
-function onFontAlignRight() {
+function onAlignRight() {
     const line = getSelectedLine()
     line.align = 'right'
     line.pos.x = gElCanvas.width - 20
@@ -248,17 +252,13 @@ function renderNewLine(idx) {
     elNewLine.placeholder = `Line ${idx + 1}`
 
     elNewLine.setAttribute('oninput', `onSetText(this.value, ${idx})`)
-    elNewLine.setAttribute('data-index', idx)
+    elNewLine.setAttribute('data-index', idx) //data-index="1"
+    //to retrieve: elNewLine.dataset.index; or .getAttribute('data-index')
 
     elNewLine.addEventListener('click', () => onSelectLine(elNewLine, idx))
 
     const inputDiv = document.querySelector('.text-lines-container')
     inputDiv.appendChild(elNewLine)
-}
-
-//maybe redundant?? maybe call it getLineIdx
-function onFocusLine(idx) {
-    gMeme.selectedLineIdx = idx
 }
 
 function onSelectLine(elLine, idx) {
@@ -267,6 +267,7 @@ function onSelectLine(elLine, idx) {
     gMeme.lines.forEach(line => line.isSelected = false)
     gMeme.selectedLineIdx = idx
     const selectedLine = gMeme.lines[idx]
+    console.log('gMeme with updated selected line index:', gMeme);
 
     selectedLine.isSelected = true
     //dom
@@ -366,9 +367,6 @@ function drawRect(x, y) {
 
     gCtx.strokeStyle = 'red'
     gCtx.strokeRect(rectX, rectY, textWidth + padding * 2, textHeight + padding * 2)
-
-    console.log(gMeme);
-
 }
 
 function clearRect() {
@@ -391,7 +389,7 @@ function renderSavedMemes() {
     elMemes.innerHTML = memes.map(meme => {
         return `
         <article>
-            <button onclick="onRemoveMeme('${meme.id}')" class="remove-btn btn">x</button>
+            <button onclick="onRemoveMeme('${meme.id}')" class="remove-btn btn flex align-center justify-center">x</button>
             <img src="${meme.data}" onclick="onSelectMeme('${meme.id}')">
         </article>
         `
@@ -417,6 +415,7 @@ function onSave() {
     addMeme(data)
     renderSavedMemes()
 }
+
 //more actions
 function onDownloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL() //converts graphics data to an img format

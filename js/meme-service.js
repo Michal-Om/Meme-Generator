@@ -109,8 +109,6 @@ function setImg(imgId) {
 function setLineText(text, idx) {
     const line = gMeme.lines[idx]
     line.txt = text
-    console.log('updated line:', line.txt);
-    // console.log(gMeme);
 }
 
 function getSelectedLine() {
@@ -142,7 +140,7 @@ function createLine() {
 function findLineAtPosition(offsetX, offsetY) {
     const line = gMeme.lines.find(line => {
         gCtx.font = `${line.size}px ${line.font}` //curr font settings
-        const textHeight = line.size
+        const textHeight = line.size //font size is height
         const textWidth = gCtx.measureText(line.txt).width
 
         const xStart = line.pos.x - (textWidth / 2)
