@@ -15,10 +15,8 @@
 
 .text-lines-container {
   width: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
   gap: 0.5em;
 }
 
@@ -28,18 +26,18 @@
   width: 100%;
   max-width: 400px;
   padding: 0.5em;
-  border-radius: 5px;
-  border: 1px solid var(--clr-primary-base);
+  border-radius: var(--box-border-radius);
+  border: var(--box-border);
   background-color: var(--clr-primary--2);
 }
 
 .text-line.selected {
-  border: 2px solid var(--clr-primary-3);
+  border: var(--box-border-selected);
 }
 
 .text-line:focus {
   outline: none;
-  border: 2px solid var(--clr-primary-3);
+  border: var(--box-border-selected);
 }
 
 /*font editor container*/
@@ -49,23 +47,19 @@
 
 /*Emojis and container*/
 .emojis-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* overflow-x: auto; */
   overflow-x: scroll;
   scrollbar-color: var(--clr-primary-base) var(--clr-primary-2);
   scrollbar-width: thin;
   gap: 3em;
-  border: 1px solid var(--clr-primary-base);
-  border-radius: 5px;
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
   width: 400px;
   padding: 1em;
 }
 
 .emojis-container img.selected {
-  border: 2px solid var(--clr-primary-3);
-  border-radius: 5px;
+  border: var(--box-border-selected);
+  border-radius: var(--box-border-radius);
   padding: 1px;
 }
 .emojis-container img {
@@ -93,8 +87,8 @@
   position: relative;
   width: 100%;
   display: block;
-  border: 1px solid var(--clr-primary-base);
-  border-radius: 5px;
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
   padding: 0.5em;
 }
 

@@ -2,12 +2,12 @@
 
 .btn {
   background-color: var(--clr-primary--1);
-  border-radius: 5px;
+  border-radius: var(--box-border-radius);
+  border: var(--box-border);
   font-size: 1em;
   font-weight: bold;
   color: var(--clr-primary-1);
   padding: 0.5em;
-  border: 1px solid var(--clr-primary-base);
 }
 
 .btn:hover {
@@ -18,8 +18,8 @@
 .btn-like {
   text-decoration: none;
   background-color: var(--clr-primary--1);
-  border: 1px solid var(--clr-primary-base);
-  border-radius: 5px;
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
   color: var(--clr-primary-1);
   padding: 0.5em;
   font-weight: bold;
@@ -33,12 +33,9 @@
 .editor-action-btns,
 .editor-font-btns,
 .editor-text-btns {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 1em;
-  border: 1px solid var(--clr-primary-base);
-  border-radius: 5px;
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
   width: 400px;
   padding: 1em;
 }
@@ -47,13 +44,27 @@
   font-size: 0.8em;
 }
 
-.remove-btn,
-.switch.btn {
+.add-line,
+.delete-line,
+.move-line-up,
+.move-line-down {
+  width: 2.1em;
+  height: 2.1em;
+}
+
+.remove-btn {
   max-height: 2.1em;
   max-width: 2.1em;
 }
 
-.color-picker input,
+.switch.btn {
+  font-size: 1.2em;
+  width: 1.75em;
+  height: 1.75em;
+  line-height: 1; /*removes extra vertical spacing*/
+  padding: 0;
+}
+
 .upload input {
   display: none;
 }
@@ -64,13 +75,16 @@
 
 #font-select:focus {
   outline: none;
-  border: 2px solid var(--clr-primary-3);
+  border: var(--box-border-selected);
 }
 
 .remove-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1em;
+  color: var(--clr-primary-base);
   padding: 1em;
+}
+
+.remove-btn:hover {
+  border: var(--box-border-selected);
+  background-color: transparent;
 }

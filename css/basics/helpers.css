@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.flex.justify-center {
+  justify-content: center;
+}
+
 /* list helpers */
 
 .clean-list {

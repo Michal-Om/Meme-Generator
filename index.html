@@ -48,27 +48,41 @@
               onclick="onCanvasClick(event)"
             ></canvas>
         </div>
-      <div class="text-lines-container">
+      <div class="text-lines-container flex align-center">
          <input type="search" id="text" class="text-line" name="text" data-index="0" placeholder="Top text" 
          onclick="onSelectLine(this, 0)" 
-         onfocus="onFocusLine(0)" 
          oninput="onSetText(this.value, 0)">
       </div>
-      <div class="editor-text-btns">
-        <button class="fa-solid fa-plus btn" onclick="onAddLine()"></button>
-        <button class="fa-solid fa-trash btn" onclick="onRemoveLine()"></button>
-            <button class="fa-solid fa-arrow-up btn" onclick="onMoveLineUp()"></button>
-            <button class="fa-solid fa-arrow-down btn" onclick="onMoveLineDown()"></button>
-            <button class="switch btn" onclick="onSwitchLine()">⇅</button>
+      <div class="editor-text-btns flex align-center justify-center">
+        <button class="add-line btn" onclick="onAddLine()" aria-label="Add Line">
+          <!-- avoid Blocked aria-hidden message -->
+          <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        </button>
+        <button class="delete-line btn" onclick="onRemoveLine()" aria-label="Delete Line">
+          <i class="fa-solid fa-trash" aria-hidden="true"></i>
+        </button>
+            <button class="move-line-up btn" onclick="onMoveLineUp()" aria-label="Move Line Up">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+            </button>
+            <button class="move-line-down btn" onclick="onMoveLineDown()" aria-label="Move Line Down">
+              <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+            </button>
+            <button class="switch btn flex align-center justify-center" onclick="onSwitchLine()">⇅</button>
           
           </div> 
-          <div class="editor-font-btns">
+          <div class="editor-font-btns flex align-center justify-center">
             <button class="font-inc btn" onclick="onFontSizeUp(10)">A+</button>
             <button class="font-dec btn" onclick="onFontSizeDown(10)">A-</button>
            
-            <button class="fa-solid fa-align-left btn" onclick="onFontAlignLeft()"></button>
-            <button class="fa-solid fa-align-center btn" onclick="onFontAlignCenter()"></button>      
-            <button class="fa-solid fa-align-right btn" onclick="onFontAlignRight()"></button>
+            <button class="align-left btn" onclick="onAlignLeft()" aria-label="Align Left">
+              <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+            </button>
+            <button class="align-center btn" onclick="onAlignCenter()" aria-label="Align Center">
+              <i class="fa-solid fa-align-center" aria-hidden="true"></i>
+            </button>      
+            <button class="align-right btn" onclick="onAlignRight()" aria-label="Align Right">
+              <i class="fa-solid fa-align-right" aria-hidden="true"></i>
+            </button>
        
             <select name="fonts" class="font-family btn" id="font-select" onchange="onFontChange(this.value)">
               <option value="monospace">monospace</option>
@@ -82,7 +96,7 @@
               <input type="color" value="#000000" oninput="onSetColor(this.value)" />
           </div>
 
-          <div class="emojis-container">
+          <div class="emojis-container flex align-center justify-center">
             <img src="img/Emojis/emoji1.png" onclick="onSelectEmoji(this)">
             <img src="img/Emojis/emoji1.png" onclick="onSelectEmoji(this)">
             <img src="img/Emojis/emoji2.png" onclick="onSelectEmoji(this)">
@@ -94,7 +108,7 @@
             <img src="img/Emojis/emoji8.png" onclick="onSelectEmoji(this)">
           </div>
 
-          <div class="editor-action-btns">
+          <div class="editor-action-btns flex align-center justify-center">
             <a href="#" onclick="onDownloadCanvas(this)" class="btn-like" download="file-name">Download &#10515;</a>
             <form
         method="POST"

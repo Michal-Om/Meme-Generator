@@ -6,4 +6,8 @@
   --clr-primary-base: #de5499;
   --clr-primary-1: #264143;
   --clr-primary-2: #e99f4c;
+
+  --box-border: 1px solid var(--clr-primary-base);
+  --box-border-selected: 2px solid var(--clr-primary-3);
+  --box-border-radius: 5px;
 }
