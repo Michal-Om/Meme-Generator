@@ -9,22 +9,16 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
+
+    document.querySelector('.saved-memes').style.display = 'none';
+
     const firstLine = gMeme.lines[0].txt
     const elInput = document.querySelector(`.text-line[data-index="0"]`)
     elInput.value = firstLine
     renderMeme()
-    renderSavedMemes()
-}
-
-function onSetText(text, idx) {
-    console.log('onSetText:', text, 'at idx:', idx)
-    setLineText(text, idx)
-    renderMeme()
 }
 
 function renderMeme() {
-    // console.log('Rendering Meme...');
-
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
     if (gMeme.img) {
@@ -34,12 +28,17 @@ function renderMeme() {
     gMeme.emojis.forEach(emoji => {
         gCtx.drawImage(emoji.img, emoji.pos.x, emoji.pos.y, emoji.size, emoji.size)
     })
-
     gMeme.lines.forEach(line => { //render all existing text lines 
         if (line.txt) {
             renderText(line)
         }
     })
+}
+
+function onSetText(text, idx) {
+    console.log('onSetText:', text, 'at idx:', idx)
+    setLineText(text, idx)
+    renderMeme()
 }
 
 function renderText(line) {
@@ -73,17 +72,6 @@ function getEvPos(ev) {
         }
     }
     return pos
-}
-
-//Images
-//Choose Img from gallery
-function onImgSelect(imgId) {
-    gMeme.selectedImgId = imgId
-    setImg(imgId)
-    showEditor()
-    console.log('imgId', imgId);
-    console.log('curr gMeme after setting imgId', gMeme);
-
 }
 
 //Emojis
@@ -132,7 +120,7 @@ function showEditor() {
     document.querySelector('.gallery').classList.remove('active')
 
     document.querySelector('.saved-memes').style.display = 'block';
-
+    renderSavedMemes()
 }
 
 function showGallery() {
@@ -140,7 +128,6 @@ function showGallery() {
     document.querySelector('.editor').classList.remove('active')
 
     document.querySelector('.saved-memes').style.display = 'none';
-
 }
 
 //Font changes
@@ -409,7 +396,6 @@ function onRemoveMeme(memeId) {
     renderSavedMemes()
 }
 
-
 function onSave() {
     const data = gElCanvas.toDataURL()
     addMeme(data)
@@ -437,4 +423,5 @@ function onClearCanvas() {
 function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
+
 

@@ -5,3 +5,24 @@
   grid-template-columns: 1fr;
   gap: 1em;
 }
+
+.filter-label {
+  color: var(--clr-primary-1);
+  font-weight: bold;
+}
+
+.filter-container {
+  margin-bottom: 2em;
+}
+
+.filter-input {
+  border-radius: var(--box-border-radius);
+  border: var(--box-border);
+  background-color: var(--clr-primary--2);
+  padding: 0.5em;
+}
+
+.filter-input:focus {
+  outline: none;
+  border: var(--box-border-selected);
+}

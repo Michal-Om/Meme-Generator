@@ -21,7 +21,6 @@
 }
 
 /*inputs*/
-
 .text-line {
   width: 100%;
   max-width: 400px;
@@ -79,7 +78,7 @@
   /*auto-fill fills the rows with as many cols that can fit*/
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1em;
-  margin-top: 3em;
+  margin-top: 1em;
   margin-bottom: 2em;
 }
 

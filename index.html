@@ -33,6 +33,30 @@
     
     <section class="gallery page active gallery-layout">
       <h2>Select an Image</h2>
+      <div class="filter-container">
+        <label for="keyword-input" class="filter-label">Filter by Keyword:</label>
+        <input list="img-keywords" class="filter-input" id="keyword-input" 
+        name="filter-keyword" oninput="onFilter()"/>
+        <datalist id="img-keywords">
+          <option value="Baby"></option>
+          <option value="Puppies"></option>
+          <option value="Dog"></option>
+          <option value="Funny"></option>
+          <option value="Angry"></option>
+          <option value="Bad"></option>
+          <option value="Joke"></option>
+          <option value="Tough"></option>
+          <option value="Cat"></option>
+          <option value="Happy"></option>
+          <option value="Confident"></option>
+          <option value="Free"></option>
+          <option value="Cute"></option>
+          <option value="Fascinating"></option>
+          <option value="Serious"></option>
+          <option value="You"></option>
+        </datalist>
+        <button class="reset-filter btn" onclick="onResetFilter()">Reset</button>
+      </div>
       <div class="img-grid"></div> 
     </section>
 
@@ -133,7 +157,7 @@
     </section>
 
     <section class="saved-memes">
-      <h2>Saved Memes</h2>
+      <h2 class="saved-memes-title">Saved Memes</h2>
       <div class="saved-memes-grid">
         <!-- Saved memes will be rendered here -->
       </div>
@@ -143,6 +167,7 @@
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/gallery-service.js"></script>
     <script src="js/upload-share.js"></script>
   </body>
 </html>
