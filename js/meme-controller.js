@@ -424,4 +424,19 @@ function toggleMenu() {
     document.body.classList.toggle("menu-open");
 }
 
+function onCreateRandomMeme() {
+    var randomSelectedImg = gImgs[Math.floor(Math.random() * gImgs.length)]
+    console.log('random img obj:', randomSelectedImg);
 
+    var randomSelectedLine = gRandomLines[Math.floor(Math.random() * gRandomLines.length)]
+    console.log('random line text:', randomSelectedLine);
+
+    setLineText(randomSelectedLine, 0)
+    onImgSelect(randomSelectedImg.id)
+    gMeme.selectedImgId = randomSelectedImg.id
+
+    console.log('gMeme after randomize:', gMeme);
+    const randomLine = gMeme.lines[0].txt
+    const elInput = document.querySelector(`.text-line[data-index="0"]`)
+    elInput.value = randomLine
+}

@@ -34,9 +34,9 @@
     <section class="gallery page active gallery-layout">
       <h2>Select an Image</h2>
       <div class="filter-container">
-        <label for="keyword-input" class="filter-label">Filter by Keyword:</label>
+        <label for="keyword-input" class="filter-label"></label>
         <input list="img-keywords" class="filter-input" id="keyword-input" 
-        name="filter-keyword" oninput="onFilter()"/>
+        name="filter-keyword" placeholder="Filter by Keyword" oninput="onFilter()"/>
         <datalist id="img-keywords">
           <option value="Baby"></option>
           <option value="Puppies"></option>
@@ -56,6 +56,7 @@
           <option value="You"></option>
         </datalist>
         <button class="reset-filter btn" onclick="onResetFilter()">Reset</button>
+        <button class="random-meme btn" onclick="onCreateRandomMeme()">Create Random Meme</button>
       </div>
       <div class="img-grid"></div> 
     </section>
@@ -162,12 +163,12 @@
         <!-- Saved memes will be rendered here -->
       </div>
     </section>  
-
+    
     <script src="js/util-service.js"></script>
-    <script src="js/meme-controller.js"></script>
-    <script src="js/meme-service.js"></script>
-    <script src="js/gallery-controller.js"></script>
     <script src="js/gallery-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script> 
     <script src="js/upload-share.js"></script>
   </body>
 </html>

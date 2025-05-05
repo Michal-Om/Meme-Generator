@@ -20,9 +20,17 @@
   border: var(--box-border);
   background-color: var(--clr-primary--2);
   padding: 0.5em;
+  font: inherit;
+  color: var(--clr-primary-1);
+  font-size: 0.8em;
 }
 
 .filter-input:focus {
   outline: none;
   border: var(--box-border-selected);
+}
+
+.filter-input::placeholder {
+  font: inherit;
+  color: var(--clr-primary-base);
 }

@@ -14,7 +14,7 @@ var gMeme = {
             txt: 'Sometimes I eat Falafel',
             font: 'Impact',
             size: 20,
-            color: 'black',
+            color: 'white',
             pos: { x: 200, y: 50 },// default pos top text
             align: 'center',
             isSelected: false,
@@ -25,7 +25,19 @@ var gMeme = {
     selectedEmoji: null,
     img: null,
 }
+
+var gRandomLines = ['These pretzels are making me thirsty!',
+    'When you wanna shoot, shoot',
+    'Am I high maintenance??',
+    "I'm miserable, so I might as well be comfortable",
+    'When you look annoyed all the time,',
+    'Go ahead, make my day',
+    'Showme the money!'
+]
+
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+
+
 
 // handle ready memes 
 function getMemes() {
