@@ -1,6 +1,7 @@
 'use strict';
 
-let gfilterByKeyword = null
+let gFilterByKeyword = null
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['Trump', 'angry'] },
@@ -54,8 +55,27 @@ function _filterImgs(keyword) {
 }
 
 function getImgs(keyword) {
-    if (!gfilterByKeyword) return gImgs
+    if (!gFilterByKeyword) return gImgs
     var imgs = gImgs
     imgs = _filterImgs(keyword)
     return imgs
 }
+
+//handle search statistics
+function getKeywordStats(elKeyword) {
+    if (!elKeyword || elKeyword === '') return
+    const countMap = gKeywordSearchCountMap
+    var keyword = elKeyword.toLowerCase()
+    console.log('keyword after lower case:', keyword);
+    console.log('countMap before:', countMap);
+    if (!countMap[keyword]) { //countMap.keyword value named keyword , countMap[keyword] value stored in the keyword var
+        countMap[keyword] = 1
+    } else
+        countMap[keyword]++
+    console.log('countMap after:', countMap);
+
+    return countMap
+}
+
+
+

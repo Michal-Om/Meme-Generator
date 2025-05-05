@@ -1,7 +1,7 @@
 'use strict';
 
 function renderGallery() {
-    const filteredImgs = getImgs(gfilterByKeyword)
+    const filteredImgs = getImgs(gFilterByKeyword)
     const elImgs = document.querySelector('.img-grid')
     elImgs.innerHTML = filteredImgs.map(img => {
         return `
@@ -26,16 +26,23 @@ function onImgSelect(imgId) {
 function onFilter() {
     // gFilterBy = value; //.value gets the value entered
     const elKeyWord = document.querySelector('.filter-input')
-    gfilterByKeyword = elKeyWord.value
+    gFilterByKeyword = elKeyWord.value
+    console.log('chosen value:', gFilterByKeyword);
     renderGallery()
+    getKeywordStats(gFilterByKeyword)
+    // renderKeywords(gFilterByKeyword)
 }
 
 
 function onResetFilter() {
     //reset global var
-    gfilterByKeyword = ''
+    gFilterByKeyword = ''
     renderGallery()
     //clear the input
     const elKeyword = document.querySelector('.filter-input')
     elKeyword.value = ''
 }
+
+
+
+

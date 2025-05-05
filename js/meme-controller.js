@@ -9,7 +9,6 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
-
     document.querySelector('.saved-memes').style.display = 'none';
 
     const firstLine = gMeme.lines[0].txt

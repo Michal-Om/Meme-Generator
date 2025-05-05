@@ -29,15 +29,10 @@ var gMeme = {
 var gRandomLines = ['These pretzels are making me thirsty!',
     'When you wanna shoot, shoot',
     'Am I high maintenance??',
-    "I'm miserable, so I might as well be comfortable",
-    'When you look annoyed all the time,',
     'Go ahead, make my day',
-    'Showme the money!'
+    'Show me the money!',
+    'Fun fact,'
 ]
-
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-
-
 
 // handle ready memes 
 function getMemes() {
@@ -129,3 +124,8 @@ function removeLastLine() {
     //remove from model
     gMeme.lines.pop()
 }
+
+
+
+
+
