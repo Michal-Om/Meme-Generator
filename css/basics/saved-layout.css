@@ -1,0 +1,25 @@
+.saved-memes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.saved-memes-grid article {
+  position: relative;
+  width: 100%;
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
+  padding: 0.5em;
+}
+
+.saved-memes-grid article button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.saved-memes-grid article img {
+  width: 100%;
+  cursor: pointer;
+}

@@ -1,0 +1,22 @@
+/*inputs*/
+.text-line {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5em;
+  border-radius: var(--box-border-radius);
+  border: var(--box-border);
+  background-color: var(--clr-primary--2);
+}
+
+.text-line.selected {
+  border: var(--box-border-selected);
+}
+
+.text-line:focus {
+  outline: none;
+  border: var(--box-border-selected);
+}
+
+.filter-input {
+  min-width: 100px;
+}
