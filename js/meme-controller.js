@@ -9,8 +9,6 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
-    document.querySelector('.saved-memes').style.display = 'none';
-
     const firstLine = gMeme.lines[0].txt
     const elInput = document.querySelector(`.text-line[data-index="0"]`)
     elInput.value = firstLine
@@ -117,16 +115,20 @@ function onUp() {
 function showEditor() {
     document.querySelector('.editor').classList.add('active')
     document.querySelector('.gallery').classList.remove('active')
-
-    document.querySelector('.saved-memes').style.display = 'block';
-    renderSavedMemes()
+    document.querySelector('.saved-memes').classList.remove('active')
 }
 
 function showGallery() {
     document.querySelector('.gallery').classList.add('active')
     document.querySelector('.editor').classList.remove('active')
+    document.querySelector('.saved-memes').classList.remove('active')
+}
 
-    document.querySelector('.saved-memes').style.display = 'none';
+function showSavedMemes() {
+    document.querySelector('.saved-memes').classList.add('active')
+    document.querySelector('.gallery').classList.remove('active')
+    document.querySelector('.editor').classList.remove('active')
+    renderSavedMemes()
 }
 
 //Font changes

@@ -13,7 +13,6 @@ function renderGallery() {
 
 }
 
-//Choose Img from gallery
 function onImgSelect(imgId) {
     gMeme.selectedImgId = imgId
     setImg(imgId)
@@ -22,27 +21,32 @@ function onImgSelect(imgId) {
     console.log('curr gMeme after setting imgId', gMeme);
 }
 
-//Filter
 function onFilter() {
-    // gFilterBy = value; //.value gets the value entered
     const elKeyWord = document.querySelector('.filter-input')
     gFilterByKeyword = elKeyWord.value
     console.log('chosen value:', gFilterByKeyword);
     renderGallery()
     getKeywordStats(gFilterByKeyword)
-    // renderKeywords(gFilterByKeyword)
 }
 
-
 function onResetFilter() {
-    //reset global var
     gFilterByKeyword = ''
     renderGallery()
-    //clear the input
     const elKeyword = document.querySelector('.filter-input')
     elKeyword.value = ''
 }
 
+function renderKeywords(keyword) {
+    var keywordLower = keyword.toLowerCase()
+    var elSpans = document.querySelectorAll('.filter-container span')
+    if (gSpanScaleValue >= 1.8) return
+    elSpans.forEach(span => {
+        if (span.innerText === keywordLower) {
+            gSpanScaleValue += 0.1
+            span.style.scale = gSpanScaleValue
+        }
+    })
+}
 
 
 

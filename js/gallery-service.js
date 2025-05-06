@@ -2,6 +2,7 @@
 
 let gFilterByKeyword = null
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gSpanScaleValue = 1
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['Trump', 'angry'] },
@@ -31,7 +32,7 @@ function getImgById(imgId) {
     return img
 }
 
-//Set Img from gallery to original canvas size
+
 function setImg(imgId) {
     const selectedImg = getImgById(imgId)
     const img = new Image()
@@ -39,18 +40,16 @@ function setImg(imgId) {
     img.onload = () => {
         gElCanvas.width = 400
         gElCanvas.height = 400
-        gMeme.img = img  // store selected img in object
-        renderMeme() // render only after image is loaded
+        gMeme.img = img
+        renderMeme()
     }
 }
 
-//gallery filter
 function _filterImgs(keyword) {
     if (!keyword) return gImgs
     var imgs = gImgs
     const regex = new RegExp(keyword, 'i')
     imgs = imgs.filter(img => regex.test(img.keywords.join(' ')))
-    // get me the img that its keyword passes the test. join because keywords is array
     return imgs
 }
 
@@ -61,18 +60,17 @@ function getImgs(keyword) {
     return imgs
 }
 
-//handle search statistics
 function getKeywordStats(elKeyword) {
     if (!elKeyword || elKeyword === '') return
     const countMap = gKeywordSearchCountMap
     var keyword = elKeyword.toLowerCase()
-    console.log('keyword after lower case:', keyword);
-    console.log('countMap before:', countMap);
-    if (!countMap[keyword]) { //countMap.keyword value named keyword , countMap[keyword] value stored in the keyword var
+    if (!countMap[keyword]) {
         countMap[keyword] = 1
-    } else
+    } else {
         countMap[keyword]++
-    console.log('countMap after:', countMap);
+        renderKeywords(gFilterByKeyword)
+    }
+    console.log('countmap:', countMap);
 
     return countMap
 }
