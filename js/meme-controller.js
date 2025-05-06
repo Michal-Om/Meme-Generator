@@ -251,7 +251,7 @@ function onMoveLineUp() {
         showMsg('Please Select a Line To Edit')
         return
     }
-    line.pos.y -= 1
+    line.pos.y -= 3
     console.log(line.pos.y);
     unSelectEmoji()
     renderMeme()
@@ -272,15 +272,13 @@ function renderNewLine(idx) {
     console.log('rendering new line input with idx:', idx)
     const elNewLine = document.createElement('input')
 
-    //set input attributes (like properties in an object)
     elNewLine.type = 'search'
     elNewLine.classList.add('text-line')
     elNewLine.name = 'text'
     elNewLine.placeholder = `Line ${idx + 1}`
 
     elNewLine.setAttribute('oninput', `onSetText(this.value, ${idx})`)
-    elNewLine.setAttribute('data-index', idx) //data-index="1"
-    //to retrieve: elNewLine.dataset.index; or .getAttribute('data-index')
+    elNewLine.setAttribute('data-index', idx)
 
     elNewLine.addEventListener('click', () => onSelectLine(elNewLine, idx))
 

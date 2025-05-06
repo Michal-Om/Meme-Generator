@@ -19,6 +19,7 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function renderImg(img) {
+    gMeme.img = img
     //use natural img size and fit canvas to it
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
