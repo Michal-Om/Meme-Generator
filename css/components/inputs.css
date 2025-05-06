@@ -1,5 +1,7 @@
 /*inputs*/
 .text-line {
+  font-family: lexend_deca;
+  font-weight: 400;
   width: 100%;
   max-width: 400px;
   padding: 0.5em;
@@ -15,6 +17,10 @@
 .text-line:focus {
   outline: none;
   border: var(--box-border-selected);
+}
+
+.text-line::placeholder {
+  font-family: lexend_deca;
 }
 
 .filter-input {

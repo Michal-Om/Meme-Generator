@@ -4,7 +4,7 @@
 
 html {
   color: var(--clr-primary-base);
-  font-family: sans-serif;
+  font-family: lexend_deca;
 }
 
 body {
@@ -43,7 +43,6 @@ canvas:hover {
 
 a {
   color: var(--clr-primary-base);
-  font-size: 1.1em;
 }
 
 a:hover {

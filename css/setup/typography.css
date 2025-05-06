@@ -3,3 +3,13 @@
   font-family: cherry_bomb;
   src: url("../../fonts/Cherry_Bomb_One/CherryBombOne-Regular.ttf");
 }
+
+@font-face {
+  font-family: lexend_deca;
+  src: url("../../fonts/Lexend_Deca/LexendDeca-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: lexend_deca_bold;
+  src: url("../../fonts/Lexend_Deca/LexendDeca-Bold.ttf");
+}

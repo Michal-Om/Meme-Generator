@@ -1,9 +1,9 @@
 .btn {
+  font-family: lexend_deca;
   background-color: var(--clr-primary--1);
   border-radius: var(--box-border-radius);
   border: var(--box-border);
   font-size: 1em;
-  font-weight: bold;
   color: var(--clr-primary-1);
   padding: 0.5em;
 }
@@ -20,7 +20,6 @@
   border-radius: var(--box-border-radius);
   color: var(--clr-primary-1);
   padding: 0.5em;
-  font-weight: bold;
 }
 
 .btn-like:hover {
@@ -41,7 +40,7 @@
 .random-meme,
 .reset-filter,
 .editor-action-btns {
-  font-size: 0.8em;
+  font-size: 0.809em;
   width: auto;
 }
 

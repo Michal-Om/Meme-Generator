@@ -7,14 +7,14 @@
   place-items: center;
   height: 4rem;
   width: 4rem;
-
-  font-family: sans-serif;
-  font-weight: bold;
+  font-family: lexend_deca;
+  font-size: 1.1em;
 }
 
 .btn.btn-toggle-menu {
   color: var(--clr-primary-base);
   padding: 0.7em 1em;
+  border: 1.5px solid var(--clr-primary-3);
 }
 
 .btn-toggle-menu:hover {
