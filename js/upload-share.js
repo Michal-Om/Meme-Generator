@@ -60,3 +60,4 @@ async function uploadImg(imgData, onSuccess) {
         console.log(err)
     }
 }
+

@@ -27,7 +27,7 @@ var gMeme = {
     img: null,
 }
 
-var gRandomLines = ['These pretzels are making me thirsty!',
+var gRandomLines = [
     'When you wanna shoot, shoot',
     'Am I high maintenance??',
     'Go ahead, make my day',

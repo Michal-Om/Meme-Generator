@@ -33,7 +33,6 @@ function renderMeme() {
 }
 
 function onSetText(text, idx) {
-    console.log('onSetText:', text, 'at idx:', idx)
     setLineText(text, idx)
     renderMeme()
 }
@@ -45,13 +44,11 @@ function renderText(line) {
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
 
-
     if (line.isOutline) {
         gCtx.strokeStyle = 'black'
         gCtx.lineWidth = 1
         gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
     }
-
 }
 
 function getEvPos(ev) {
@@ -99,11 +96,9 @@ function unSelectEmoji() {
 function onDown(ev) {
     console.log('onDown');
     gIsMouseDown = true
-    //image tool: stamp once without dragging
     if (gMeme.selectedEmoji) {
         const pos = getEvPos(ev)
         gCtx.drawImage(gMeme.selectedEmoji, pos.x - 20, pos.y - 20, 40, 40)
-        //store in model
         gMeme.emojis.push({
             img: gMeme.selectedEmoji,
             pos: { x: pos.x - 20, y: pos.y - 20 },
@@ -140,25 +135,34 @@ function showSavedMemes() {
 //Font changes
 function onFontSizeUp(size) {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     if (line.size >= 100) return
     line.size += size
-    console.log('current font size:', line.size);
     unSelectEmoji()
     renderMeme()
 }
 
 function onFontSizeDown(size) {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     if (line.size <= 10) return
-    console.log('font size before:', line.size);
     line.size -= size
-    console.log('current font size:', line.size);
     unSelectEmoji()
     renderMeme()
 }
 
 function onFontChange(font) {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.font = font
     unSelectEmoji()
     renderMeme()
@@ -166,6 +170,10 @@ function onFontChange(font) {
 
 function onAlignLeft() {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.align = 'left'
     line.pos.x = 20
     unSelectEmoji()
@@ -174,6 +182,10 @@ function onAlignLeft() {
 
 function onAlignCenter() {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.align = 'center'
     line.pos.x = gElCanvas.width / 2.
     unSelectEmoji()
@@ -182,6 +194,10 @@ function onAlignCenter() {
 
 function onAlignRight() {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.align = 'right'
     line.pos.x = gElCanvas.width - 20
     unSelectEmoji()
@@ -190,6 +206,10 @@ function onAlignRight() {
 
 function onFontOutline() {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.isOutline = !line.isOutline
     renderMeme()
 }
@@ -197,6 +217,10 @@ function onFontOutline() {
 //Text Color
 function onSetColor(color) {
     const line = getSelectedLine()
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.color = color
     unSelectEmoji()
     renderMeme()
@@ -204,29 +228,29 @@ function onSetColor(color) {
 
 //Text lines Actions
 function onAddLine() {
-    createLine() //model
+    createLine()
 }
 
 function onRemoveLine() {
     if (gMeme.lines.length === 1) {
-        console.log('last line cannot be deleted');
+        showMsg('Last Line Cannot Be Deleted!');
         return
     }
     removeLastLine()
-    console.log('deleting text input');
-
-    //remove from dom
     const elInputs = document.querySelectorAll('.text-line') //node list
     const elLastInput = elInputs[elInputs.length - 1]
 
     const inputContainer = document.querySelector('.text-lines-container') //parent
     inputContainer.removeChild(elLastInput)
-
     renderMeme()
 }
 
 function onMoveLineUp() {
     const line = getSelectedLine();
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.pos.y -= 1
     console.log(line.pos.y);
     unSelectEmoji()
@@ -235,8 +259,11 @@ function onMoveLineUp() {
 
 function onMoveLineDown() {
     const line = getSelectedLine();
+    if (!line) {
+        showMsg('Please Select a Line To Edit')
+        return
+    }
     line.pos.y += 3
-    // console.log(line.pos.y);
     unSelectEmoji()
     renderMeme()
 }
@@ -262,15 +289,12 @@ function renderNewLine(idx) {
 }
 
 function onSelectLine(elLine, idx) {
-    console.log('onSelectLine called with idx:', idx)
-    //model
     gMeme.lines.forEach(line => line.isSelected = false)
     gMeme.selectedLineIdx = idx
     const selectedLine = gMeme.lines[idx]
-    console.log('gMeme with updated selected line index:', gMeme);
 
     selectedLine.isSelected = true
-    //dom
+
     const elInputs = document.querySelectorAll('.text-line')
     elInputs.forEach(input => input.classList.remove('selected'))
     elLine.classList.add('selected')
@@ -279,7 +303,6 @@ function onSelectLine(elLine, idx) {
 
     if (!selectedLine.txt) return
     drawRect(selectedLine.pos.x, selectedLine.pos.y)
-
 }
 
 function unSelectLine(line) {
@@ -403,31 +426,28 @@ function onSelectMeme(memeId) {
     renderImg(img)
 }
 
-
 function onRemoveMeme(memeId) {
     removeMeme(memeId)
     renderSavedMemes()
 }
 
 function onSave() {
-    showMsg()
+    showMsg('Your Meme Has Been Saved Successfully🎈')
     const data = gElCanvas.toDataURL()
     addMeme(data)
     renderSavedMemes()
 
 }
 
-
-function showMsg() {
+function showMsg(msg) {
     const elMsg = document.querySelector('.saved-msg')
-    elMsg.innerText = 'Your Meme Has Been Saved Successfully🎈'
+    elMsg.innerText = msg
     elMsg.classList.remove('hide')
 
     setTimeout(() => {
         elMsg.classList.add('hide')
     }, 2000)
 }
-
 
 //more actions
 function onDownloadCanvas(elLink) {
