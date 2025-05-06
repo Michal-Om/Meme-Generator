@@ -20,25 +20,6 @@
   gap: 0.5em;
 }
 
-/*inputs*/
-.text-line {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.5em;
-  border-radius: var(--box-border-radius);
-  border: var(--box-border);
-  background-color: var(--clr-primary--2);
-}
-
-.text-line.selected {
-  border: var(--box-border-selected);
-}
-
-.text-line:focus {
-  outline: none;
-  border: var(--box-border-selected);
-}
-
 /*font editor container*/
 .editor-font-btns {
   flex-wrap: wrap;
@@ -69,34 +50,4 @@
 .emojis-container img:hover {
   cursor: pointer;
   opacity: 0.5;
-}
-
-/*SAVED MEMES*/
-
-.saved-memes-grid {
-  display: grid;
-  /*auto-fill fills the rows with as many cols that can fit*/
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1em;
-  margin-top: 1em;
-  margin-bottom: 2em;
-}
-
-.saved-memes-grid article {
-  position: relative;
-  width: 100%;
-  display: block;
-  border: var(--box-border);
-  border-radius: var(--box-border-radius);
-  padding: 0.5em;
-}
-
-.saved-memes-grid article button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-.saved-memes-grid article img {
-  width: 100%;
-  cursor: pointer;
 }

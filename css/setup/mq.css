@@ -29,7 +29,18 @@
   .main-nav-list a:first-child {
     margin-top: 1rem;
   }
+
+  .filter-container {
+    justify-content: center;
+  }
+  .filter-container > :nth-child(5) {
+    margin-right: 1em;
+  }
+  .search-words {
+    gap: 1em;
+  }
 }
+
 /*Medium*/
 @media (min-width: 768px) {
   .gallery-layout .img-grid {
@@ -39,6 +50,9 @@
   }
   .btn-toggle-menu {
     display: none;
+  }
+  .filter-container > :nth-child(5) {
+    margin-right: auto;
   }
 }
 
