@@ -39,13 +39,19 @@ function onSetText(text, idx) {
 }
 
 function renderText(line) {
-    // console.log('curr line at render text:', line)
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.textAlign = line.align
     gCtx.textBaseline = 'middle'
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
-    // console.log('Rendering text:', line.txt, 'at position:', line.pos)
+
+
+    if (line.isOutline) {
+        gCtx.strokeStyle = 'black'
+        gCtx.lineWidth = 1
+        gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+    }
+
 }
 
 function getEvPos(ev) {
@@ -179,6 +185,12 @@ function onAlignRight() {
     line.align = 'right'
     line.pos.x = gElCanvas.width - 20
     unSelectEmoji()
+    renderMeme()
+}
+
+function onFontOutline() {
+    const line = getSelectedLine()
+    line.isOutline = !line.isOutline
     renderMeme()
 }
 

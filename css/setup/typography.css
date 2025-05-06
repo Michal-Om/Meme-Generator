@@ -13,3 +13,8 @@
   font-family: lexend_deca_bold;
   src: url("../../fonts/Lexend_Deca/LexendDeca-Bold.ttf");
 }
+
+@font-face {
+  font-family: tourney;
+  src: url("../../fonts/Tourney/Tourney-VariableFont_wdth\,wght.ttf");
+}

@@ -17,6 +17,7 @@ var gMeme = {
             color: 'white',
             pos: { x: 200, y: 50 },// default pos top text
             align: 'center',
+            isOutline: false,
             isSelected: false,
         },
 
@@ -77,7 +78,6 @@ function setLineText(text, idx) {
 }
 
 function getSelectedLine() {
-    // return gMeme.lines[gMeme.selectedLineIdx]
     return gMeme.lines.find(line => line.isSelected)
 }
 

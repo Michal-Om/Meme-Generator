@@ -85,3 +85,10 @@
   border: var(--box-border-selected);
   background-color: transparent;
 }
+
+.outline {
+  font-family: tourney;
+  font-size: 1.8em;
+  padding: 0.1em 0.5em;
+  line-height: 1;
+}
