@@ -56,3 +56,18 @@ a:hover {
 .page.active {
   display: block;
 }
+
+.hide {
+  display: none;
+}
+
+.saved-msg {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--clr-primary-2);
+  border: var(--box-border);
+  color: var(--clr-primary-1);
+  padding: 10px;
+  border-radius: var(--box-border-radius);
+}

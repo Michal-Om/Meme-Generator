@@ -398,10 +398,24 @@ function onRemoveMeme(memeId) {
 }
 
 function onSave() {
+    showMsg()
     const data = gElCanvas.toDataURL()
     addMeme(data)
     renderSavedMemes()
+
 }
+
+
+function showMsg() {
+    const elMsg = document.querySelector('.saved-msg')
+    elMsg.innerText = 'Your Meme Has Been Saved Successfully🎈'
+    elMsg.classList.remove('hide')
+
+    setTimeout(() => {
+        elMsg.classList.add('hide')
+    }, 2000)
+}
+
 
 //more actions
 function onDownloadCanvas(elLink) {
