@@ -3,6 +3,9 @@
   font-family: cherry_bomb;
   font-size: 3em;
   padding-bottom: 0.2em;
+  border: none;
+  background-color: var(--clr-primary--1);
+  cursor: pointer;
 }
 
 .logo img {

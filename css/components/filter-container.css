@@ -1,4 +1,6 @@
 .filter-container {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.5em;
   width: 100%;
@@ -8,8 +10,10 @@
 }
 
 .search-words {
-  align-self: center;
-  gap: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3em;
   font-weight: bold;
   scale: 1;
   margin-right: 0.5em;

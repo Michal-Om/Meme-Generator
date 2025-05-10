@@ -34,3 +34,7 @@
   font: inherit;
   color: var(--clr-primary-base);
 }
+
+span.keyword {
+  cursor: pointer;
+}
