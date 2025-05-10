@@ -1,5 +1,5 @@
 
-'use strict';
+'use strict'
 
 const STORAGE_KEY = 'memeDB'
 
@@ -35,7 +35,16 @@ var gRandomLines = [
     'Fun fact,'
 ]
 
-// handle ready memes 
+//get data from gMemes:
+function getMemeImg() {
+    return gMeme.img;
+}
+
+function getMemeTextLines() {
+    return gMeme.lines;
+}
+
+// handle ready memes
 function getMemes() {
     return gMemes
 }
@@ -59,6 +68,27 @@ function getMemeById(memeId) {
     return meme
 }
 
+function creatRandomMeme() {
+    var randomSelectedImg = getRandImg()
+    var randomSelectedLine = gRandomLines[Math.floor(Math.random() * gRandomLines.length)]
+
+    gMeme.lines = [{
+        txt: randomSelectedLine,
+        font: 'Impact',
+        size: 30,
+        color: 'white',
+        pos: { x: 200, y: 50 },
+        align: 'center',
+        isSelected: true,
+        isOutline: false,
+    }]
+    gMeme.selectedLineIdx = 0
+    gMeme.selectedImgId = randomSelectedImg.id
+    onImgSelect(randomSelectedImg.id)
+
+    return randomSelectedLine
+}
+
 function _createMeme(data) {
     return {
         id: makeId(),
@@ -71,6 +101,24 @@ function _saveMemesToStorage() {
     saveToStorage(STORAGE_KEY, gMemes)
 }
 
+//Handle emojis
+function getMemeEmojis() {
+    return gMeme.emojis;
+}
+
+function getSelectedEmoji() {
+    return gMeme.selectedEmoji
+}
+
+function setSelectedEmoji(elEmoji) {
+    gMeme.selectedEmoji = elEmoji
+}
+
+function addEmojiToMeme(img, pos, size) {
+    gMeme.emojis.push(img, pos, size)
+}
+
+
 //Handle Text Lines
 function setLineText(text, idx) {
     const line = gMeme.lines[idx]
@@ -79,6 +127,11 @@ function setLineText(text, idx) {
 
 function getSelectedLine() {
     return gMeme.lines.find(line => line.isSelected)
+}
+
+function setSelectedLineIdx(idx) {
+    gMeme.selectedLineIdx = idx
+    gMeme.lines[idx].isSelected = true
 }
 
 function createLine() {
@@ -99,6 +152,14 @@ function createLine() {
     console.log('new line idx:', lineIdx);
 
     renderNewLine(lineIdx)
+}
+
+function getFirstLine() {
+    return gMeme.lines[0].txt
+}
+
+function unSelectAllLines() {
+    gMeme.lines.forEach(line => line.isSelected = false)
 }
 
 //bounds of text

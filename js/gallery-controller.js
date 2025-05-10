@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 function renderGallery() {
     const filteredImgs = getImgs(gFilterByKeyword)
@@ -18,13 +18,13 @@ function onImgSelect(imgId) {
     setImg(imgId)
     showEditor()
     console.log('imgId', imgId);
-    console.log('curr gMeme after setting imgId', gMeme);
+    console.log('curr gMeme after setting imgId', gMeme)
 }
 
 function onFilter() {
     const elKeyWord = document.querySelector('.filter-input')
     gFilterByKeyword = elKeyWord.value
-    console.log('chosen value:', gFilterByKeyword);
+    console.log('chosen value:', gFilterByKeyword)
     renderGallery()
     getKeywordStats(gFilterByKeyword)
 }
@@ -39,13 +39,21 @@ function onResetFilter() {
 function renderKeywords(keyword) {
     var keywordLower = keyword.toLowerCase()
     var elSpans = document.querySelectorAll('.filter-container span')
-    if (gSpanScaleValue >= 1.8) return
     elSpans.forEach(span => {
         if (span.innerText === keywordLower) {
-            gSpanScaleValue += 0.1
-            span.style.scale = gSpanScaleValue
+            let currScale = +span.style.scale || 1
+            if (currScale < 1.8) {
+                currScale += 0.1
+                span.style.scale = currScale
+            }
         }
     })
+}
+
+function handleSpanClick(elSpan) {
+    const keyword = elSpan.innerText
+    getKeywordStats(keyword)
+
 }
 
 

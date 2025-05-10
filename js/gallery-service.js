@@ -1,8 +1,7 @@
-'use strict';
+'use strict'
 
 let gFilterByKeyword = null
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-var gSpanScaleValue = 1
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['Trump', 'angry'] },
@@ -69,12 +68,19 @@ function getKeywordStats(elKeyword) {
         countMap[keyword] = 1
     } else {
         countMap[keyword]++
-        renderKeywords(gFilterByKeyword)
     }
-    console.log('countmap:', countMap);
+    renderKeywords(keyword)
+    console.log('countmap:', countMap)
 
     return countMap
 }
 
+function getKeywordCountMap() {
+    return gKeywordSearchCountMap
+}
+
+function getRandImg() {
+    return gImgs[Math.floor(Math.random() * gImgs.length)]
+}
 
 

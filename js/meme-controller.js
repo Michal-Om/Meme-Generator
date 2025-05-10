@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 let gElCanvas
 let gCtx
@@ -9,7 +9,9 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
-    const firstLine = gMeme.lines[0].txt
+    //Object.keys: takes an object and returns an array
+    Object.keys(getKeywordCountMap()).forEach(keyword => renderKeywords(keyword))
+    const firstLine = getFirstLine()
     const elInput = document.querySelector(`.text-line[data-index="0"]`)
     elInput.value = firstLine
     renderMeme()
@@ -18,14 +20,17 @@ function onInit() {
 function renderMeme() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
-    if (gMeme.img) {
+    const img = getMemeImg()
+    if (img) {
         gElCanvas.height = (gMeme.img.naturalHeight / gMeme.img.naturalWidth) * gElCanvas.width
         gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
-    gMeme.emojis.forEach(emoji => {
+    const emojis = getMemeEmojis()
+    emojis.forEach(emoji => {
         gCtx.drawImage(emoji.img, emoji.pos.x, emoji.pos.y, emoji.size, emoji.size)
     })
-    gMeme.lines.forEach(line => { //render all existing text lines 
+    const lines = getMemeTextLines()
+    lines.forEach(line => { //render all existing text lines 
         if (line.txt) {
             renderText(line)
         }
@@ -77,35 +82,34 @@ function getEvPos(ev) {
 //Emojis
 function onSelectEmoji(elEmoji) {
     elEmoji.classList.add('selected')
-    if (gMeme.selectedEmoji) gMeme.selectedEmoji.classList.remove('selected')
-    if (gMeme.selectedEmoji === elEmoji) {
-        gMeme.selectedEmoji = null
+    const selectedEmoji = getSelectedEmoji()
+    if (selectedEmoji) selectedEmoji.classList.remove('selected')
+    if (selectedEmoji === elEmoji) {
+        setSelectedEmoji(null)
     } else {
-        gMeme.selectedEmoji = elEmoji
+        setSelectedEmoji(elEmoji)
     }
-    console.log('selected emoji:', gMeme.selectedEmoji);
+    console.log('selected emoji:', getSelectedEmoji());
 }
 
 function unSelectEmoji() {
     const elEmoji = document.querySelector('.emojis-container img.selected')
     if (!elEmoji) return
     elEmoji.classList.remove('selected')
-    gMeme.selectedEmoji = null
+    setSelectedEmoji(null)
 }
 
 function onDown(ev) {
     console.log('onDown');
     gIsMouseDown = true
-    if (gMeme.selectedEmoji) {
-        const pos = getEvPos(ev)
-        gCtx.drawImage(gMeme.selectedEmoji, pos.x - 20, pos.y - 20, 40, 40)
-        gMeme.emojis.push({
-            img: gMeme.selectedEmoji,
-            pos: { x: pos.x - 20, y: pos.y - 20 },
-            size: 40,
-        })
-        return
-    }
+    const selectedEmoji = getSelectedEmoji()
+    if (!selectedEmoji) return
+
+    const pos = getEvPos(ev)
+    const emojiSize = 40
+    gCtx.drawImage(selectedEmoji, pos.x - 20, pos.y - 20, 40, 40)
+    addEmojiToMeme(selectedEmoji, { x: pos.x - 20, y: pos.y - 20 }, emojiSize)
+    return
 }
 
 function onUp() {
@@ -287,11 +291,9 @@ function renderNewLine(idx) {
 }
 
 function onSelectLine(elLine, idx) {
-    gMeme.lines.forEach(line => line.isSelected = false)
-    gMeme.selectedLineIdx = idx
-    const selectedLine = gMeme.lines[idx]
-
-    selectedLine.isSelected = true
+    unSelectAllLines()
+    setSelectedLineIdx(idx)
+    const selectedLine = getSelectedLine()
 
     const elInputs = document.querySelectorAll('.text-line')
     elInputs.forEach(input => input.classList.remove('selected'))
@@ -397,8 +399,9 @@ function clearRect() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height); // Clear the entire canvas
 
     // re-render image if there's one set
-    if (gMeme.img) {
-        gCtx.drawImage(gMeme.img, 0, 0, gElCanvas.width, gElCanvas.height);
+    const img = getMemeImg
+    if (img) {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     }
     renderMeme();
 }
@@ -470,25 +473,8 @@ function toggleMenu() {
 }
 
 function onCreateRandomMeme() {
-    var randomSelectedImg = gImgs[Math.floor(Math.random() * gImgs.length)]
-    var randomSelectedLine = gRandomLines[Math.floor(Math.random() * gRandomLines.length)]
+    const randomLine = creatRandomMeme()
 
-    gMeme.lines = [{
-        txt: randomSelectedLine,
-        font: 'Impact',
-        size: 30,
-        color: 'white',
-        pos: { x: 200, y: 50 },
-        align: 'center',
-        isSelected: true,
-        isOutline: false,
-    }]
-    gMeme.selectedLineIdx = 0
-
-    onImgSelect(randomSelectedImg.id)
-    gMeme.selectedImgId = randomSelectedImg.id
-
-    const randomLine = gMeme.lines[0].txt
     const elInput = document.querySelector(`.text-line[data-index="0"]`)
     elInput.value = randomLine
 }
